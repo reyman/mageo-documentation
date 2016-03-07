@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# thx to https://github.com/dpmb/dpmb/blob/gitbook/bin/generate-gitbook-summary.pl
 
 use strict;
 use warnings;
@@ -21,7 +22,7 @@ while (@files_to_process) {
     foreach my $line (read_file($file)) {
         if ($line =~ /^(={1,10})\s*([^=]+?)\s*=*\s*$/) {
             my $level = length($1)-1;
-            $output .= '.'x$level . " link:$file\[$2\]\n";
+            $output .= '.'x$level . "link:$file\[$2\]\n";
             last;
         }
     }
