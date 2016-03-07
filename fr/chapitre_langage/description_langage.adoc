@@ -1,0 +1,11 @@
+=== Description du langage MAGEO
+
+Un script écrit en langage MAGEO est composé, selon le contexte, soit d’une liste d’affectations de variables locales (comme dans la partie variables locales d’un comportement) , soit d’une expression logique (comme pour la pertinence), soit d’une liste d’instructions (comme pour la partie action d’un comportement). Une expression nécessite de faire appel à des entités qui mémorisent des informations.
+
+include::description/entite.adoc[]
+
+include::description/instructions.adoc[]
+
+include::description/expressions.adoc[]
+
+include::description/listes.adoc[]

@@ -1,0 +1,44 @@
+==== Comment désigner une entité dans le langage
+
+Dans MAGéo, comme dans tous les langages informatiques, pour accéder à l’information contenue dans une entité du modèle il suffit de la désigner, c’est-à-dire écrire son nom. Ces noms peuvent être de simples identificateurs de variables locales définies dans le script, ou provenir d’entités déjà existantes dans le modèle conceptuel comme une classe d’agent ou d’organisation, un attribut d’agent, un nom d’agent (composé du nom de sa classe suivi de son numéro d’individu, exemple : Case56), un nom relatif à une relation de localisation (passagers, hôtes, co-passagers), un nom de relation binaire ou générale, ou être défini dans l’interface de simulation, comme le nom d’un curseur, d’un champ de texte, etc. Un nom peut aussi désigner une fonction (prédéfinie ou propre au modèle) qui fait alors un calcul ou qui réalise une action dans le modèle.
+
+Lorsque le modélisateur choisit un nom d’entité ou de variable locale, celui-ci ne doit pas être un mot déjà utilisé dans le langage ou le modèle (comme les mots réservés du langage : `ALL, ONE, COUNTS, EXISTS, OF, FROM, FOR, IN, DO, IF, etc.` (voir l’annexe de la grammaire du langage qui contient la liste exhaustive des mots réservés du langage ainsi que les noms de fonctions prédéfinies). Un identificateur commence toujours par une lettre, puis peut contenir ensuite des lettres ou des chiffres, mais pas de symboles autres qu’alphanumériques, par exemple `pop2015` est un nom correct, mais `pop-2015` ne l’est pas. Une lettre peut être accentuée, la casse (minuscule ou majuscule) n’est pas prise en compte. Un nom peut être simple ou composé de plusieurs parties séparées par un point `.` ou deux points lorsqu’il s’agit d’une référence à une organisation `:`
+
+Dans un nom composé, la partie la plus à gauche est celle qui désigne l’entité la plus globale (par exemple `Rel`), les suivantes désignent une entité interne à la précédente, etc.
+
+Le contenu désigné par le nom dépend de toute la chaîne :
+
+`Case2341.Force` ::
+ Désigne l’attribut (Décimal) « force » de l’instance d’agent `Case2341`.
+
+`Self.Force` ::
+ Désigne l’attribut (Décimal) « force » de l’agent `Self` en cours d’exécution dans le comportement où se trouve cette désignation. S’il n’y a pas d’ambiguïté, on peut omettre le mot Self et écrire simplement : `Force`
+
+`Case`  ::
+C’est le nom d’une classe agent, cela désigne la liste complète des instances de cette classe, qui équivaut à écrire : `[Case0, Case1,…,Case2500]`
+
+`Case.Force` ::
+La partie gauche dégignant une classe d’agents, l’ensemble désigne donc la liste de toutes les valeurs de l’attribut `Force` pour toutes les instances de la classe Case, ce qui équivaut à la liste de nombres : `[Case0.Force, Case1.force,…,Case2500.Force]`
+
+Supposons qu’il y ait une relation de localisation de la classe `Jeton` vers la classe `Case`, dans laquelle la relation directe, qui à tout jeton associe son hôte, est appelée `MaCase`, une relation inverse appelée `MesJetons`, qui à toute case associe ses passagers jetons, et enfin `JetonsVoisins`, la relation de co-passagers, qui associe à chaque jeton les jetons qui sont localisés dans la même case que lui. Alors, les noms suivants désignent :
+
+`Jeton18.MaCase` ::
+Désigne la case sur laquelle se localise `Jeton18`.
+
+`Case2.MesJetons` ::
+Désigne la liste des passagers de type `Jeton`, qui sont localisés sur case2.
+
+`Jeton18.JetonsVoisins` ::
+Désigne la liste des agents de type `Jeton`, qui sont localisés sur la même case que Jeton18.
+
+`Jeton18.Neighbors(3)` ::
+On fait appel ici  à une fonction prédéfinie `Neighbors(r)` qui est appelée depuis un jeton, On obtient alors la liste des agents passagers qui sont dans le voisinage de rayon 3 autour de `Jeton18` (on suppose ici qu’il n’y a que la classe `Jeton` qui est localisée sur les cases).
+
+`Jeton18.MaCase.Neighbors(3)` :: Comme la fonction `Neighbors` est appellée depuis une case, on obtient ici la liste des cases qui sont dans le voisinage de rayon 3 autour de la case désignée par `Jeton18.MaCase`.
+
+Supposons enfin, que `Rel` soit une relation binaire ayant deux composants : `Jetons` et `Cases`, où `Jetons` est un composant de type `Jeton`, et `Cases` de type `Case`. La relation est donc composée de couples formées d’un jeton et d’une case. On peut écrire :
+
+`Rel.Cases.Etat` ::
+Désigne la liste des valeurs de l’attribut Etat des agents `Case` qui sont référencés dans la première colonne de la relation `Rel`.
+
+Ces quelques exemples montrent les principes et la richesse de la désignation des entités dans Magéo.

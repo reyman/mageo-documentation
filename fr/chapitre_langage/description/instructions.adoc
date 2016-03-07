@@ -1,0 +1,143 @@
+==== Les instructions
+
+Une instruction est soit une affectation, soit un appel à une fonction, soit une structure de contrôle.
+
+===== Affectation
+
+L’affectation est l’action de copier une information dans une mémoire, qu’on appelle une variable, car elle doit pouvoir être modifiée, qui peut être une variable locale, un attribut d’agent ou de relation, Une variable est donc un emplacement de stockage d’information qui possède un nom (donné par le modélisateur, si possible explicite pour lui donner du sens), un type de donnée et un contenu. L’information que l’on copie provient soit aussi d’une variable lue, soit d’une expression qui est calculée et qui combine les valeurs de plusieurs variables.  La forme syntaxique d’une affectation est  de la forme :
+
+[listing]
+Variable :=  Expression
+
+L’expression est donc calculée dans la partie à de droite de `:=`  et le résultat est stocké dans la partie gauche, la `Variable` (on dit que la variable est _affectée_ par l’expression ou _prend pour valeur_ le résultat de l’expression). Le langage de Mageo n’étant pas déclaratif,  la variable est créée automatiquement et son type est déterminé par le type de l’expression.
+
+===== Appel de fonctions
+
+L’appel à une fonction est formé simplement du nom de cette fonction suivi par la liste des paramètres d’appel entre parenthèses et séparés par des virgules. S’il n’y a pas de paramètres, on peut mettre des parenthèses vides, ou ne pas en mettre.
+
+Une fonction renvoie toujours un résultat, par exemple : `y := SIN(x)`, dans ce cas l’instruction est une affectation car on a besoin de récupérer le résultat `y`. Les fonctions d’action renvoient aussi un résultat mais on en n’a pas toujours besoin, on n’écrit pas alors l’affectation, mais seulement l’appel à la fonction. La valeur renvoyée par une fonction d’action est appelée la satisfaction. La satisfaction vaut `TRUE` si l’action a pu se réaliser et `FALSE` sinon.
+
+Par exemple on peut écrire  `ok := GOTO(Lieu)` si l’on a besoin de connaître la satisfaction de l’action (mémorisée dans la variable `ok`), ou sinon, l’instruction se résume à `GOTO(Lieu)`
+
+===== Instructions de contrôle
+
+Les instructions de contrôle permettent d’exécuter des actions ne manière non séquentielle, L’ordre séquentiel, consiste à exécuter l’instruction de la ligne 1, puis celle de la ligne 2, etc. jusqu’à la dernière ligne. On dispose de quatre instructions de contrôles qui se regroupent en deux catégories : les tests et les boucles.
+
+====== Les tests
+
+La conditionnelle, qui est de la forme :
+
+[listing]
+----
+IF Condition THEN #<1>
+  BlocAction #<2>
+ENDIF
+----
+<1> `Condition` est une expression booléenne (`TRUE` ou `FALSE`)
+<2> `BlocAction` est une ou plusieurs actions, chaque action étant écrite sur une ligne.
+
+Les actions du `BlocAction` ne seront exécutées que si la Condition est vraie
+
+L’alternative, qui est de la forme :
+
+[listing]
+----
+IF Condition THEN #<1>
+  BlocAction1
+ELSE
+  BlocAction2 #<2>
+ENDIF
+----
+<1> `Condition` est une expression booléenne (`TRUE` ou `FALSE`)
+<2> `BlocAction1` et `BlocAction2` sont constitués d’une ou plusieurs actions.
+
+Les actions du `BlocAction1` ne seront exécutées que si la `Condition` est vraie et Les actions du `BlocAction2` ne seront exécutées que si la Condition est `fausse`.
+
+====== Les boucles
+
+Ici aussi, deux formes de boucles sont possibles :
+
+* La boucle de répétition simple `LOOP .. ENDLOOP`
+* La boucle  `FOR .. IN .. DO .. ENDFOR`
+
+'''
+
+*LOOP*
+
+[listing]
+----
+LOOP n #<1>
+ BlocAction
+ENDLOOP
+----
+<1> `n` est un nombre entier qui indique combien de fois les actions du `blocAction` doivent être exécutées.
+
+[example]
+.Un exemple (formel)  :
+====
+|===
+| LOOP | liste d'instruction
+
+a|
+[listing]
+----
+ LOOP 3
+  GOTO(UnLieu)
+  UnLieu := UnLieu + UnPas
+ENDLOOP
+----
+
+a|
+[listing]
+----
+  GOTO(UnLieu)
+  UnLieu := UnLieu + UnPas
+  GOTO(UnLieu)
+  UnLieu := UnLieu + UnPas
+  GOTO(UnLieu)
+  UnLieu := UnLieu + UnPas
+----
+|===
+====
+
+'''
+
+*FOR*
+
+La boucle FOR avec variable muette, est de la forme :
+
+[listing]
+----
+FOR x IN Liste DO #<1>
+    BlocAction(x) #<2>
+ENDFOR
+----
+
+<1> pour chaque terme `x` de la liste, ...
+<2> \... faire exécuter les instructions du `blocAction` selon la valeur de x.
+
+`x` est la variable muette qui parcourt chaque terme de la liste. S’il y a 58 termes dans la liste, les actions du bloc seront exécutées 58 fois, en tenant compte à chaque fois de la valeur de `x`.
+
+[example]
+.Un autre exemple de code avec la syntaxe `FOR`  :
+====
+Si la liste `L` une liste de nombres dont la longueur est inconnue,
+les instructions suivantes permettent de calculer la moyenne des termes de la liste :
+
+[listing]
+----
+n :=0
+S :=0
+
+FOR x IN L DO
+  n := n+1
+  S := S+x
+ENDFOR
+
+IF n>0 THEN
+  Moy := S/n
+ELSE
+  Moy := 0 //pour éviter de diviser par 0
+ENDIF
+----
+====

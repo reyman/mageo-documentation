@@ -1,0 +1,19 @@
+= Documentation MAGEO
+:doctype: book
+:toc: left
+:lang: fr
+:toclevels: 3
+:icons: font
+:numbered:
+:source-highlighter: pygments
+:pygments-css: class
+:idprefix: -
+:sectanchors:
+
+blablabla
+
+include::chapitre_langage/le_langage.adoc[]
+
+include::chapitre_fonctionalite/les_fonctionalites.adoc[]
+
+include::chapitre_principes/les_principes.adoc[]
