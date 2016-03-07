@@ -3,5 +3,5 @@
 . link:README.adoc[Introduction]
 . link:les_principes.adoc[Les principes]
 . link:les_fonctionalites.adoc[Les fonctionalités]
-. Le langage
+. link:le_langage.adoc[Le langage]
 
