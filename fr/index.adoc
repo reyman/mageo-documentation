@@ -12,8 +12,6 @@
 
 blablabla
 
-include::README.adoc[]
-
 include::chapitre_langage/le_langage.adoc[]
 
 include::chapitre_fonctionalite/les_fonctionalites.adoc[]
