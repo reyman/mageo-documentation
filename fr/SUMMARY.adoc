@@ -1,12 +1,14 @@
 = Summary
 
-
-. link:README.adoc[Introduction]
-. link:chapitre_principes/les_principes.adoc[Les principes]
-. link:chapitre_fonctionalite/les_fonctionalites.adoc[Les fonctionalités]
-. link:chapitre_langage/le_langage.adoc[Le langage]
-.. link:chapiter_langage/besoin_du_langage.adoc[Où a-t-on besoin du langage]
-.. link:chapiter_langage/description_langage.adoc[Description du langage MAGEO]
-.. link:chapiter_langage/fonction_mathematique.adoc[Fonctions mathématique usuelles]
-.. link:chapiter_langage/fonction_contexte.adoc[Syntaxe des fonctions dépendant du contexte]
+ link:INDEX.adoc[Documentation MAGEO]
+. link:./chapitre_langage/le_langage.adoc[Le langage]
+.. link:chapitre_langage/besoin_du_langage.adoc[Où a-t-on besoin du langage]
+.. link:chapitre_langage/description_langage.adoc[Description du langage MAGEO]
+... link:chapitre_langage/description/entite.adoc[Comment désigner une entité dans le langage]
+... link:chapitre_langage/description/instructions.adoc[Les instructions]
+... link:chapitre_langage/description/expressions.adoc[Les expressions]
+... link:chapitre_langage/description/listes.adoc[Utilisation des listes]
+.. link:chapitre_langage/description_fct_mathematique.adoc[Fonctions mathématique usuelles]
+. link:./chapitre_fonctionalite/les_fonctionalites.adoc[Les fonctionalités]
+. link:./chapitre_principes/les_principes.adoc[Les principes]
 
