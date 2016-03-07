@@ -1,5 +1,5 @@
 # Summary
 
 * [Les principes](les_principes.adoc)
-* Les fonctionalités
+* [Les fonctionalités](les_fonctionalites.adoc)
 
