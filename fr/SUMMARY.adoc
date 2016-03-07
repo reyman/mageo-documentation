@@ -2,5 +2,5 @@
 
 . link:README.adoc[Introduction]
 . link:les_principes.adoc[Les principes]
-. Les fonctionalités
+. link:les_fonctionalites.adoc[Les fonctionalités]
 
