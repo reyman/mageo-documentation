@@ -1,2 +1,6 @@
 = Le langage
 
+Le langage Mageo est un langage essentiellement d’expressions, par opposition à un langage algorithmique. En effet, il ne nécessite généralement pas d’utiliser des formes syntaxiques élaborées, pour le contrôle de l’ordre d’exécution. Néanmoins des instructions comme les tests ou les boucles, existent et peuvent être utilisés pour développer des scripts sophistiqués, mais dans la grande majorité des modèles, on n’en a pas besoin.
+
+Ce langage a été conçu pour écrire des scripts courts, de une à quelques lignes. Une expression ressemble quelquefois à une requête SQL, mais elle est totalement adaptée à la programmation par agent et à l’environnement Mageo. 
+
