@@ -1,6 +1,6 @@
 ==== Les instructions
 
-Une instruction est soit une affectation, soit un appel à une fonction, soit une structure de contrôle.
+Une instruction est soit une affectation, soit un appel à une fonction, soit une structure de contrôle. *C'est tout?*
 
 ===== Affectation
 
