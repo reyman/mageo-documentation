@@ -1,6 +1,6 @@
 = Summary
 
- link:INDEX.adoc[Documentation MAGEO]
+. link:INDEX.adoc[Documentation MAGEO]
 . link:./chapitre_langage/le_langage.adoc[Le langage]
 .. link:chapitre_langage/besoin_du_langage.adoc[Où a-t-on besoin du langage]
 .. link:chapitre_langage/description_langage.adoc[Description du langage MAGEO]
