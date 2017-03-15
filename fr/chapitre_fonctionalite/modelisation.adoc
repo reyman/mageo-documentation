@@ -6,6 +6,21 @@ La fenêtre de modélisation est celle dans laquelle est construit le modèle co
 
 Les entités d’un modèle conceptuel sont construites selon la symbolique suivante :
 
+[Tableau]
+.Entités du modèle conceptuel  :
+====
+
+|===
+| Type d'entité | Symbole graphique
+
+| Agent unique | image:/assets/image004.jpg[alt=""]
+
+| Agent générique | image:/assets/image006.jpg[alt=""]
+
+|===
+
+====
+
 
 
 === Principe de construction d’un modèle dans MAGEO
