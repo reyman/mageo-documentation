@@ -154,7 +154,7 @@ image:/assets/image032.jpg[alt="Voisinages selon les topologies et les rayons"]
 
     * Soit par ordre décroissant selon une expression donnée par l’utilisateur.
 
-==== Paramétrage des comportements
+===== Maillage irrégulier et Réseau 
 
 Le même dialogue est utilisé pour paramétrer un réseau ou un maillage zonal irrégulier.
 
@@ -180,8 +180,96 @@ La topologie définit la notion de voisinage. On peut utiliser la contiguïté e
 
 * Soit par ordre décroissant selon une expression donnée par l’utilisateur.
 
+===== Population non localisée ou mobiles dans un espace continu
 
+Une organisation « sociale » est d’abord une organisation non spatiale, qui repose sur un ensemble d’agents composants appelé population. Ces agents ne sont pas localisés _a priori_ mais peuvent le devenir si on définit une relation de localisation de ces agents vers les composants d’une organisation spatiale. Une organisation sociale, munie de sa population, ne contient donc pas de structure particulière à sa création, c’est au modélisateur de définir les relations qui structureront la population.
+
+image:/assets/image035.png[alt="Paramétrage d'une organisation sociale"]
+
+Dans le groupe «Description », l’utilisateur définit l’identifiant de la population ainsi que l’agent hôte. Il définit également les compétences de la population, c’est-à-dire que soit celle-ci est localisée dans un espace continu, soit elle interagit de façon mobile dans l’espace.
+
+L’instanciation des agents composants peut être effectuée selon de deux méthode : soit par l’importation d’un fichier texte dans lequel sont définit le nombre des agents et leurs attributs, soit par la saisit directe du nombre d’agents souhaité dans la boîte de dialogue. Dans ce cas, les attributs de chaque agent seront définis manuellement par la suite.
+
+Enfin, comme pour les maillages, l’ordonnancement des agents composant peur se faire selon  trois manières :
+
+- Soit en synchrone (ou en parallèle) c’est-à-dire que les agents s’exécutent tous en même temps dans un pas de temps.
+
+- Soit en asynchrone, c’est-à-dire que les agents sont exécutés les uns après les autres dans un ordre aléatoire qui change à chaque pas de temps.
+
+- Soit par ordre décroissant selon une expression donnée par l’utilisateur.
+
+==== Paramétrage des comportements
+
+Dans MAGéo, chaque comportement est représenté par une entité graphique ayant la forme d’une ellipse qui est reliée aux agents susceptibles de l’utiliser. Le comportement est paramétré dans une boîte de dialogue qu’on ouvre par un double-clic sur l’entité graphique.
+
+Les actions et expressions présentes dans un comportement doivent être écrites en cohérence avec les classes d’agents auxquelles elles sont reliées. Cette cohérence relève principalement de l’utilisation du mot-clé self, (voir la partie Langage). Ainsi, lorsqu’un agent utilise un comportement (auquel il est relié par un lien dans le modèle conceptuel), cet agent y est désigné par le mot clé self. Lorsque le comportement fait référence à des attributs de self, ces attributs doivent être présents dans les classes agents reliées au comportement dans le modèle conceptuel. Un lien entre une classe agent et un comportement autorise donc les agents de cette classe à utiliser ce comportement. C’est le programme d’action de la classe agent en question qui précise comment les agents vont utiliser ce comportement au cours des itérations du modèle.
+
+Deux types de comportements sont proposés dans MAGéo. Les comportements simples et les diagrammes de transition.
+
+===== Comportements simples
+
+Un comportement simple s’exprime sous la forme d’un couple< pertinence, action>. La pertinence est une expression logique exprimée en logique continue entre 0 (totalement faux) et 1 (totalement vrai). L’action est une séquence d’instructions qui modifie l’état de l’agent (ses attributs, sa localisation, son système interne).
+
+Dans le dialogue de paramétrage du comportement, ces deux termes « pertinence » et « action » correspondent chacun à une zone de texte permettant d’écrire leur script dans le langage MAGéo. Une zone nommée « variables temporaires » permet de faire localement des calculs préparatoires dont les résultats peuvent être utilisés aussi bien dans la zone de pertinence que celle d’action.
+
+Le contenu de ces zones de texte n’est pas détaillé ici, il le sera dans la partie langage.
+
+L’exemple ci-dessous (Figure 6 : Paramétrage d'un comportement simple) montre quelques exemples d’expressions où les termes « VentDuCourant », « VentDeLaVitesse » etc. sont des variables locales et temporaires. A un instant donné, si le programme d’action de l’agent décide d’exécuter ce comportement (ici « Navigue », les calculs de la zone des variables temporaires seront exécutés, par contre la partie action ne sera exécutée que si la pertinence n’est pas fausse.
+
+image:/assets/image043.jpg[alt="Dialogue de comportement"]
+
+La figure suivante montre l’exemple d’un comportement nommé Move. Celui-ci est pertinent s’il existe au moins une cellule non bâtie dans l’ensemble des cellules du voisinage de rayon 2 de l’agent en cours d’exécution. Son action consiste alors à ce que l’agent change de localisation, en devenant le passager d’une cellule choisie au hasard parmi les cellules non-bâties de son voisinage.
+
+image:/assets/image039.png[alt="Comportement Move"]
+
+===== Diagrammes de transitions
+
+MAGéo propose également des comportements inspirés des règles de transition du logiciel SpaCelle [Dubos-Paillard et al., 2003]. Ainsi, un comportement de type diagramme de transition permet de gérer les transitions d’une variable d’état de l’agent, qui doit être ici un attribut de type énuméré, donc qualitatif. Une règle de transition est un comportement simple un peu spécial, dont l’action essentielle consiste à faire passer la variable d’un état actuel (E1) vers un état futur (E2). La transition est notée souvent: E1 à  E2. La règle contient aussi un mécanisme permettant de décider le moment et les conditions pour effectuer la transition. Pour cela, une règle de transition contient :
+
+- Une durée de latence, en nombre d’itérations, pendant laquelle la variable d’état reste dans l’état E1 avant que la transition puisse se produire. Cette durée peut être nulle ;
+
+- Dès que la durée de latence est dépassée, l’expression de la pertinence est évaluée ;
+
+- En plus de l’action de transition elle-même, une zone « action » permet d’écrire des actions supplémentaires qui se déclenchent au moment de la transition.
+
+Si plusieurs règles ont le même état initial alors ces règles sont en concurrence. La première à être valide du point de vue de sa durée et de sa pertinence sera réalisée. Si plusieurs règles sont valides à un même instant, celle dont la pertinence est la plus élevée sera choisie. Si plusieurs règles ont des pertinences maximales égales, alors l’une d’entre elles sera choisie au hasard pour être réalisée.
+
+Par exemple, dans un modèle de diffusion d’une maladie infectieuse, l’agent possède une variable d’état représentée par l’attribut qualitatif « State ». Cette variable peut prendre les trois états « S » lorsqu’il est sain, « I » lorsqu’il est malade (Infecté) et « R » lorsqu’il est guéri (Remis) et momentanément immunisé après avoir été infecté. Le diagramme permet de définir un graphe des trois transitions  (voir Figure 8). Ici un agent dans l’état S passera à l’état I selon la règle R1 s’il existe parmi l’ensemble des agents mobiles se situant dans son voisinage de rayon 2 au moins un agent dans l’état I et selon une probabilité de transmission de 5%.
+
+image:/assets/image041.png[alt="Paramétrage d'un diagramme de transition"]
+
+image:/assets/image044.jpg[alt="Définition de la règle de transition R1"]
 
 ==== Paramétrage des relations de localisation
+
+Une relation de localisation est définie par une classe agent qui est la source et une ou plusieurs classes agent qui sont les cibles. Le dialogue associé à une relation de localisation a pour but de préparer son initialisation et de définir des mots-clés qui permettront de la manipuler dans les comportements.
+
+L’initialisation d’une relation consiste à définir, pour chaque agent passager (de la source), sur quel agent hôte (dans une cible) il sera localisé au début de la simulation. Ceci peut être paramétré de quatre façons différentes :
+
+-          Localisation aléatoire : l’agent sera localisé sur un agent choisi aléatoirement parmi tous les hôtes disponibles ;
+
+-          Par inclusion géométrique : On cherche quel est le composant qui contient le centre de l’agent passager. Cette méthode n’est valable que pour des passagers ponctuels ou de forme convexe, dans le cas contraire il se peut que le centre soit situé à l’extérieur du domaine géométrique du passager. On utilise dans ce cas la méthode suivante ;
+
+-          Par clé extérieure : l’agent passager recherche son composant hôte par son identifiant qui doit être mémorisé dans un attribut du passager, nommé clé extérieure ;
+
+-          Par expression : l’agent devient passager d’un hôte obtenu par évaluation de l’expression indiquée dans le dialogue. A titre d’exemple, pour localiser chaque agent Homme sur un agent Maison de surface inférieure à 70 on écrit : 
+
+[listing]
+----
+ONE m OF Maison WHERE m.Surface <= 70
+----
+
+On notera que lorsqu’un agent non localisé devient passager d’un composant spatialisé, il se trouve placé au centre de la géométrie de cet agent hôte.
+
+Le dialogue d’une relation de localisation permet d’ailleurs de définir trois noms de fonctions utiles à la manipulation de la relation en question :
+
+-          L’hôte : par exemple (voir figure suivante) cette fonction nommée MaCase, permet de renvoyer la localisation (sur une case) d’un agent passager Jeton34 donné, par l’appel Jeton34.MaCase qui renvoie l’agent case sur lequel il est localisé;
+
+-          Les passagers : cette fonction, par exemple nommée MesJetons dans l’exemple ci-dessous, permet de renvoyer la liste des passagers d’un agent case donné, par l’appel Case67.MesJetons ;
+
+-          Les copassagers : cette fonction, par exemple nommée MesCongenères, permet de récupérer la liste des autres passagers localisés sur le même composant hôte qu’un agent passager donné, par l’appel Jeton34.MesCongenères.
+
+
+
 
 ==== Paramétrage des relations générales
