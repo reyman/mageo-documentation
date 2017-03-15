@@ -269,7 +269,7 @@ Le dialogue d’une relation de localisation permet d’ailleurs de définir tro
 
 - Les copassagers : cette fonction, par exemple nommée `MesCongenères`, permet de récupérer la liste des autres passagers localisés sur le même composant hôte qu’un agent passager donné, par l’appel `Jeton34.MesCongenères`.
 +
-image::/assets/DialogueRelationLoc.png[alt="Dialogue de paramétrage d'une relation de localisation", align="center"]
+image::/../assets/DialogueRelationLoc.png[alt="Dialogue de paramétrage d'une relation de localisation", align="center"]
 
 Une fois ces noms définis dans le dialogue, les fonctions décrites ci-dessus viennent s’ajouter au langage, et peuvent alors être utilisées dans les comportements.
 
