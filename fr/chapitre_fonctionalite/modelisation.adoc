@@ -29,6 +29,28 @@ Les entités d’un modèle conceptuel sont construites selon la symbolique suiv
 
 ====
 
+Les relations entre entités graphiques sont construites selon la symbolique suivante :
+
+[Tableau]
+.Relations du modèle conceptuel  :
+====
+
+|===
+| Type de relation | Définition | Symbolique
+
+| Appronfondissement | `Agent -> Organisation` | image:/assets/image014.jpg[alt=""]
+
+| Composition | `Organisation -> Agent` | image:/assets/image016.jpg[alt=""]
+
+| Localisation | `Agent -> Agent` | image:/assets/image020.jpg[alt=""]
+
+| Localisation étendue | `Agent -> (Agent, ... , Agent)` |image:/assets/image022.jpg[alt=""]
+
+|===
+
+====
+
+
 
 
 === Principe de construction d’un modèle dans MAGEO
