@@ -17,6 +17,20 @@ Les entités d’un modèle conceptuel sont construites selon la symbolique suiv
 
 | Agent générique | image:/assets/image006.jpg[alt=""]
 
+| Comportement simple | image:/assets/image007.jpg[alt=""]
+
+| Comportement sous forme de diagramme de transition | image:/assets/image008.jpg[alt=""]
+
+| Organisation sociale (Population) | image:/assets/image0010.jpg[alt=""]
+
+| Organisation spatiale | image:/assets/image0012.jpg[alt=""]
+
+
+
+
+
+
+
 |===
 
 ====
