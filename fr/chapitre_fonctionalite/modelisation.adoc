@@ -25,12 +25,6 @@ Les entités d’un modèle conceptuel sont construites selon la symbolique suiv
 
 | Organisation spatiale | image:/assets/image0012.jpg[alt=""]
 
-
-
-
-
-
-
 |===
 
 ====
