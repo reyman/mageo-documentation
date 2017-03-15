@@ -68,15 +68,15 @@ Une classe agent peut être approfondie par plusieurs organisations, mais une or
 
 - *La composition* : une organisation est composée d’au moins une classe agent dont les instances sont les composants de l’organisation, mais une classe agent ne compose au plus qu’une seule organisation. Le seul cas où une classe agent ne compose pas une organisation est l’agent-modèle, qui se trouve en haut de la hiérarchie des niveaux de complexité du modèle. La composition est définie par la relation :
 
-`Composition : Organisation --> Agent`
+`Composition : Organisation -> Agent`
 
-L’héritage : cette relation permet de créer des sous-classes agent de la classe initiale, dite ancêtre. Chaque sous-classe hérite des attributs et comportements de la classe ancêtre, mais peut posséder également des attributs et des comportements propres. Une sous-classe ne peut redéfinir un attribut déjà présent dans sa classe ancêtre, mais s’il y a un comportement dans une classe ancêtre qui porte le même nom qu’un comportement dans une sous-classe, celui de la sous-classe masque celui de l’ancêtre. De plus les organisations internes à la classe ancêtre sont également internes à ses sous-classes.
+- *L’héritage* : cette relation permet de créer des sous-classes agent de la classe initiale, dite ancêtre. Chaque sous-classe hérite des attributs et comportements de la classe ancêtre, mais peut posséder également des attributs et des comportements propres. Une sous-classe ne peut redéfinir un attribut déjà présent dans sa classe ancêtre, mais s’il y a un comportement dans une classe ancêtre qui porte le même nom qu’un comportement dans une sous-classe, celui de la sous-classe masque celui de l’ancêtre. De plus les organisations internes à la classe ancêtre sont également internes à ses sous-classes.
 
-Héritage : Sous-classe Agent  à Classe-ancêtre Agent
+`Héritage : Sous-classe Agent  ->  Classe-ancêtre Agent`
 
 Lorsqu’une classe agent est la classe-ancêtre d’une relation d’héritage, elle devient une classe abstraite, c’est-à-dire qu’elle ne sera pas instanciée. Comme une sous-classe peut elle-même être l’ancêtre d’une classe encore plus fine, seules les sous-classes terminales (qui ne sont ancêtres d’aucune autre) seront instanciées. Le programme d’action n’est présent que dans les classes terminales. Chaque classe terminale contient aussi les fonctionnalités d’instanciation et d’initialisation des instances de sa classe.
 
-Lien de compétence : un dernier lien graphique est automatiquement créé lorsque l’on veut munir une classe agent d’un comportement. L’agent possède alors la compétence définie par ce comportement. Plusieurs classes agent peuvent avoir une même compétence et une même classe agent peut avoir plusieurs compétences.
+- *Lien de compétence *: un dernier lien graphique est automatiquement créé lorsque l’on veut munir une classe agent d’un comportement. L’agent possède alors la compétence définie par ce comportement. Plusieurs classes agent peuvent avoir une même compétence et une même classe agent peut avoir plusieurs compétences.
 
 
 
