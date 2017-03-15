@@ -59,7 +59,7 @@ Les organisations et les classes d’agents créées sont ensuite renseignées a
 
 Un agent possède des attributs et un programme d’action. Celui-ci est un script qui indique comment ses différents comportements seront exécutés lors d’un pas de temps. Un agent peut aussi possèder un système interne formé de différentes organisations. Pour gérer son système interne, une liste de ces organisations indique leur ordonnancement lors de l’initialisation et de l’exécution. 
 
-image::/assets/image027.png[align="center", caption="Dialogue de paramétrage d'un agent"]
+image:../assets/image027.png[align="center", caption="Dialogue de paramétrage d'un agent"]
 
 L’interface de dialogue d’une classe agent permet de définir le contenu et la dynamique des agents. Elle contient :
 
