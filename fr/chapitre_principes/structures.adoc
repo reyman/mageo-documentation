@@ -1,0 +1,84 @@
+== Entités et relations de bases
+
+=== Agent et classe d'agent
+
+Au niveau conceptuel, la notion d’agent correspond à la notion de *classe agent*. Une telle classe peut représenter un agent _unique_ ou un _agent générique_. Cette classe d’agent produira au niveau physique une seule instance si c’est un agent unique et plusieurs s’il est générique.
+
+Tout modèle dans MAGéo commence par un agent unique qui représente la totalité du système modélisé. Un agent générique caractérise une collection d’agents de même structure, mais qui se différencient les uns des autres, notamment par leur nom, par des valeurs distinctes de leurs attributs, par leur contenu interne, ou encore par leur géométrie ou leur extension spatiale.
+
+Tout ce qui concerne les liens entre les agents, tel que le voisinage, la localisation ou la composition est du ressort de l’organisation.
+
+=== Organisation
+
+L’organisation est le concept de MAGéo qui permet de spécifier ce qu’il a de plus dans un *système* d’agents que dans *l’ensemble* de ces mêmes agents. Ce qu’il y a de plus, c’est la structure qui permet d’unifier ses éléments. Si l’agent conceptualise la notion *d’individualité*, l’organisation conceptualise celle de collectivité, au sens où non seulement une organisation contient une collection d’agents, mais décrit en plus un ensemble de liens objectifs entre ces agents qui explicitent comment ils sont organisés entre eux, soit spatialement, soit « socialement ». Ce que nous appelons ici « lien social » est très général, cela sous-entend tout type de relation non spatiale qui participe à la cohésion des constituants.
+
+Une organisation est nécessairement incluse dans un agent de plus haut niveau, qu’elle organise et en fait un agent complexe. Une organisation contient une ou plusieurs classes d’agents, ses composants. On peut descendre d’un niveau de complexité en organisant à nouveau chaque composant par une organisation d’agents de niveau inférieur, et ainsi de suite. Le schéma Agent – Organisation – Comportement, par sa propriété récursive est une manière de définir un *système*, ce qui fait de MAGéo une plateforme systémique à construction top-down. 
+
+MAGéo distingue deux catégories d’organisations : les organisations spatiales et les organisations sociales.
+
+==== Organisations spatiales
+
+MAGéo propose 3 types d’organisations spatiales prédéfinies : 
+
+- Le maillage régulier (en carrés ou en hexagones), 
+- le maillage irrégulier - qui permet de réaliser des cartes -, 
+- et le réseau.
+
+Dans une organisation spatiale, divers éléments de la structure sont paramétrables. C’est le cas de la morphologie de l’espace (limitée ou torique) et de la structure topologique des voisinages. Celle-ci peut être induite par la métrique choisie et permet de définir les liens de proximité ou de raccordement entre les entités géométriques, par exemple la frontière entre deux zones d’un maillage irrégulier, ou l’ordre des insertions des tronçons autour d’un nœud de réseau. Dans MAGéo, nous utilisons une structure topologique très complète construite sur le concept de graphe planaire topologique et des cartes combinatoires (Langlois 1994). Cette structure permet d’utiliser des cartes importées depuis un SIG, par exemple un fonds de carte administratif ou le réseau routier d’une ville. L’organisation est alors géoréférencée, c’est-à-dire qu’elle possède un système de coordonnées que les agents peuvent utiliser.
+
+Notons qu’une organisation spatiale contient une ou plusieurs classes d’agents. Si dans un maillage régulier, la seule classe d’agent générique est un objet surfacique, un carreau, l’organisation contiendra en revanche deux classes d’agents, des nœuds et des tronçons, dans le cas d’un réseau.
+
+==== Organisations sociales
+
+Le terme social prend ici la signification très générale de non spatial, c’est-à-dire qu’une organisation sociale est un ensemble d’agents-composants sur laquelle on peut définir des relations qui définissent sa structure. Les structures sociales étant très variées dans la réalité, il est difficile de proposer des structures prédéfinies, aussi contrairement aux structures spatiales qui sont prédéfinies, c’est au modélisateur de définir les relations qui structurent les agents d’une organisation sociale.
+
+MAGéo propose deux paradigmes pour aborder l’organisation d’un système : le paradigme *distribué* et le paradigme *compartimental*.
+
+==== Le paradigme distribué
+
+C’est celui qui considère un système comme composé d’un grand nombre de composants assez peu individualisés et en interaction, dont le nombre peut varier au cours de la vie du système sans mettre en danger son intégrité. Les organismes vivants constitués d’un grand nombre de cellules en sont un exemple typique (Varela & Maturana, 1994). Dans MAGéo, c’est à travers le concept de *population*(formée d’individus) que se traduit le paradigme distribué.
+
+==== Le paradigme compartimental
+
+C’est celui qui considère un système comme composé d’entités – appelées selon le contexte compartiments, classes, organes, sous-systèmes – qui sont très individualisées et ayant chacune sa fonctionnalité propre. Les compartiments sont en petit nombre mais chacun est indispensable à l’intégrité du système. MAGéo propose ce type d’organisation sociale compartimentée.
+
+Les compartiments d’une telle organisation sont souvent en interaction de flux, où chacun consomme des flux entrants et produit des flux sortants. Ils sont souvent eux-mêmes organisés en sous-compartiments de niveau inférieur, et ainsi de suite... L’exemple d’un organisme vivant constitué de différents organes en est un exemple typique.
+
+Ces deux paradigmes se complètent et ne sont pas antagonistes, de plus il n’y a pas de critère général permettant de choisir l’un ou l’autre. Par exemple le système constitué du découpage administratif des régions françaises (elles-mêmes subdivisée en départements, cantons, etc.), peut aussi bien se voir comme distribué que comme compartimental.
+
+=== Le temps et les comportements d'un agent
+
+MAGéo propose un temps à pas discret et constant, et non un temps à évènements discrets comme DEVS (Zeigler et al., 2000). Le temps se déroule et est discrétisé indépendamment des évènements qui peuvent se produire dans le modèle en cours de simulation.
+
+Les comportements d’un agent ont pour but de décrire ce qui se passe entre les deux instants que séparent un pas de temps. Un comportement décrit la dynamique d’un agent, et n’est pas une simple fonction de calcul ou d’action faisant évoluer des valeurs d’attribut et de position de l’agent. Un comportement décrit un mécanisme associé à l’agent qui commence par évaluer son environnement et son état interne avant d’agir. Le résultat de cette évaluation est appelée *pertinence* du comportement. L’agent dispose ensuite d’opérateurs lui permettant de faire un choix parmi plusieurs comportements, puis de lancer l’action associée à ce comportement. Si plusieurs comportements sont en concurrence, c’est le plus pertinent qui sera sélectionné. Le terme « *évaluer* » signifie que le comportement fait un calcul interne sans modifier l’état du système (si ce n’est le résultat du calcul lui-même qui est la pertinence), alors que *l’action* modifie l’état du système. Un comportement peut être complexe si c’est une combinaison de comportements élémentaires.
+
+De la même façon que les automates cellulaires, MAGéo intègre la notion de diagramme de transition, où une transition consiste simplement en un changement d’état d’une variable qualitative de l’agent. En général, une telle variable d’état est soumise à plusieurs transitions qui s’organisent en un graphe, appelé diagramme de transition. Un *diagramme de transition* peut être déterministe ou stochastique, selon que les règles de pertinence qui déclenchent les changements d’état sont déterministes ou probabilistes.
+
+=== Relations définies entre les entités
+
+Nous avons vu que dans MAGéo, on manipule trois catégories d’entités : les agents, les organisations et les comportements. Au fur et à mesure de la construction d’un modèle conceptuel, les entités créées par le modélisateur sont reliées graphiquement les unes avec les autres. Ces liens graphiques correspondent à des *relations de construction* imposées entre les entités par le méta-modèle de MAGéo. D’autres relations, que l’on pourrait qualifier de *relations libres*, doivent être définies « manuellement » par le modélisateur entre différentes classes d’agents : ce sont les relations de localisation, les relations binaires et les relations générales.
+
+==== Les relations de construction du modèle conceptuel
+
+- *L’approfondissement* : lorsque l’on insère une organisation dans un agent pour l’organiser en interne, un lien graphique est créé entre les deux entités, pour représenter la relation suivante :
+
+`Approfondissement : Agent -> Organisation`
+
+Une classe agent peut être approfondie par plusieurs organisations, mais une organisation n’organise qu’une et une seule classe agent. Une organisation qui approfondit une classe agent générique est elle-même générique et est instanciée autant de fois qu’il y a d’instances d’agents : chaque instance de cette organisation approfondit une et une seule instance de la classe-agent.
+
+- *La composition* : une organisation est composée d’au moins une classe agent dont les instances sont les composants de l’organisation, mais une classe agent ne compose au plus qu’une seule organisation. Le seul cas où une classe agent ne compose pas une organisation est l’agent-modèle, qui se trouve en haut de la hiérarchie des niveaux de complexité du modèle. La composition est définie par la relation :
+
+`Composition : Organisation --> Agent`
+
+L’héritage : cette relation permet de créer des sous-classes agent de la classe initiale, dite ancêtre. Chaque sous-classe hérite des attributs et comportements de la classe ancêtre, mais peut posséder également des attributs et des comportements propres. Une sous-classe ne peut redéfinir un attribut déjà présent dans sa classe ancêtre, mais s’il y a un comportement dans une classe ancêtre qui porte le même nom qu’un comportement dans une sous-classe, celui de la sous-classe masque celui de l’ancêtre. De plus les organisations internes à la classe ancêtre sont également internes à ses sous-classes.
+
+Héritage : Sous-classe Agent  à Classe-ancêtre Agent
+
+Lorsqu’une classe agent est la classe-ancêtre d’une relation d’héritage, elle devient une classe abstraite, c’est-à-dire qu’elle ne sera pas instanciée. Comme une sous-classe peut elle-même être l’ancêtre d’une classe encore plus fine, seules les sous-classes terminales (qui ne sont ancêtres d’aucune autre) seront instanciées. Le programme d’action n’est présent que dans les classes terminales. Chaque classe terminale contient aussi les fonctionnalités d’instanciation et d’initialisation des instances de sa classe.
+
+Lien de compétence : un dernier lien graphique est automatiquement créé lorsque l’on veut munir une classe agent d’un comportement. L’agent possède alors la compétence définie par ce comportement. Plusieurs classes agent peuvent avoir une même compétence et une même classe agent peut avoir plusieurs compétences.
+
+
+
+
+
