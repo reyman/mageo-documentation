@@ -246,13 +246,13 @@ Une relation de localisation est définie par une classe agent qui est la source
 
 L’initialisation d’une relation consiste à définir, pour chaque agent passager (de la source), sur quel agent hôte (dans une cible) il sera localisé au début de la simulation. Ceci peut être paramétré de quatre façons différentes :
 
--          Localisation aléatoire : l’agent sera localisé sur un agent choisi aléatoirement parmi tous les hôtes disponibles ;
+- Localisation aléatoire : l’agent sera localisé sur un agent choisi aléatoirement parmi tous les hôtes disponibles ;
 
--          Par inclusion géométrique : On cherche quel est le composant qui contient le centre de l’agent passager. Cette méthode n’est valable que pour des passagers ponctuels ou de forme convexe, dans le cas contraire il se peut que le centre soit situé à l’extérieur du domaine géométrique du passager. On utilise dans ce cas la méthode suivante ;
+- Par inclusion géométrique : On cherche quel est le composant qui contient le centre de l’agent passager. Cette méthode n’est valable que pour des passagers ponctuels ou de forme convexe, dans le cas contraire il se peut que le centre soit situé à l’extérieur du domaine géométrique du passager. On utilise dans ce cas la méthode suivante ;
 
--          Par clé extérieure : l’agent passager recherche son composant hôte par son identifiant qui doit être mémorisé dans un attribut du passager, nommé clé extérieure ;
+- Par clé extérieure : l’agent passager recherche son composant hôte par son identifiant qui doit être mémorisé dans un attribut du passager, nommé clé extérieure ;
 
--          Par expression : l’agent devient passager d’un hôte obtenu par évaluation de l’expression indiquée dans le dialogue. A titre d’exemple, pour localiser chaque agent Homme sur un agent Maison de surface inférieure à 70 on écrit : 
+- Par expression : l’agent devient passager d’un hôte obtenu par évaluation de l’expression indiquée dans le dialogue. A titre d’exemple, pour localiser chaque agent Homme sur un agent Maison de surface inférieure à 70 on écrit : 
 
 [listing]
 ----
@@ -263,13 +263,48 @@ On notera que lorsqu’un agent non localisé devient passager d’un composant 
 
 Le dialogue d’une relation de localisation permet d’ailleurs de définir trois noms de fonctions utiles à la manipulation de la relation en question :
 
--          L’hôte : par exemple (voir figure suivante) cette fonction nommée MaCase, permet de renvoyer la localisation (sur une case) d’un agent passager Jeton34 donné, par l’appel Jeton34.MaCase qui renvoie l’agent case sur lequel il est localisé;
+- L’hôte : par exemple (voir figure suivante) cette fonction nommée `MaCase`, permet de renvoyer la localisation (sur une case) d’un agent passager `Jeton34` donné, par l’appel `Jeton34.MaCase` qui renvoie l’agent case sur lequel il est localisé;
 
--          Les passagers : cette fonction, par exemple nommée MesJetons dans l’exemple ci-dessous, permet de renvoyer la liste des passagers d’un agent case donné, par l’appel Case67.MesJetons ;
+- Les passagers : cette fonction, par exemple nommée `MesJetons` dans l’exemple ci-dessous, permet de renvoyer la liste des passagers d’un agent case donné, par l’appel `Case67.MesJetons` ;
 
--          Les copassagers : cette fonction, par exemple nommée MesCongenères, permet de récupérer la liste des autres passagers localisés sur le même composant hôte qu’un agent passager donné, par l’appel Jeton34.MesCongenères.
+- Les copassagers : cette fonction, par exemple nommée `MesCongenères`, permet de récupérer la liste des autres passagers localisés sur le même composant hôte qu’un agent passager donné, par l’appel `Jeton34.MesCongenères`.
 
+image:/assets/DialogueRelationLoc.png[alt="Dialogue de paramétrage d'une relation de localisation"]
 
-
+Une fois ces noms définis dans le dialogue, les fonctions décrites ci-dessus viennent s’ajouter au langage, et peuvent alors être utilisées dans les comportements.
 
 ==== Paramétrage des relations générales
+
+Une relation dite générale permet de relier entre elles au moins deux classes–agent. et éventuellement, en leur adjoignant quelques attributs complémentaires.
+
+Dans le chapitre des principes (Relations libres), on a distingué trois catégories de relation: les relations de localisation (qui sont des fonctions entre ensembles d’agents), les relations binaires,  et les relations n-aires (ayant plus de deux composants). Les relations binaires de type `Rel(A, B)` entre un ensemble source d’agents A et un ensemble cible d’agents B, sont importantes car elles permettent de définir en fait deux relations distinctes, la relation directe R:A®B et la relation inverse `$$R^{-1}:B -> A$$`. Ces deux relations sont nommées explicitement par l’utilisateur lors de la définition du schéma  de la relation générale. Nous verrons un exemple précis pour illustrer cela, mais regardons d’abord les étapes de la création d’une relation binaire à travers un exemple.
+
+Exemple : Nous disposons d’une Population d’individus (localisés par ailleurs dans un espace urbain) et une organisation « Bâtiments » contenant une classe agent nommée Bâti ayant un attribut TypeBati de type énuméré TypeDeBati = (Habitation, Travail).  On veut associer pour chaque individu, un et un seul lieu de travail (ce qui en fait une application). 
+
+1)      Pour créer la relation binaire « Rel_Travail »  On clique-droit sur la classe Individu et on choisit l’item « Créer relation binaire », puis on clique sur la classe Bâti pour achever de dessiner le schéma de la relation.
+
+2)      On double-clique sur le connecteur Rel qu’on vient de créer, pour ouvrir le dialogue de paramétrage de la relation binaire.
+
+3)      Dans ce dialogue il faut renseigner les informations suivantes :
+
+-          L’identifiant de la relation : REL_Travail,
+
+-          Les classes d’agents composant la relation : elles ont été créées graphiquement à l’étape 2 par les liens qui référencent les classes d’agents participant à la relation. Ces classes d’agents apparaissent comme les premiers attributs de la relation avec un nom par défaut. Nous allons modifier ces noms pour les rendre plus explicites, car ils servent à définir les relations R et R-1 dont on a parlé plus haut :
+
+-          Le premier nom de composant choisi définit la fonction R-1 : LesTravailleursDe .
+
+-          Le deuxième nom de composant définit la fonction R : MonTravail .
+
+-          Les attributs complémentaires sont à définir dans ce dialogue, et sont de type numérique, logiques ou textuels, et apportent des informations complémentaires aux différentes occurrences de la relation, nous n’en définissons pas.
+
+-          Le groupe « Contraintes de cardinalités de la relation », doit être renseigné, car il indique de type de résultat attendu pour les relations  R et R-1. Dans notre exemple, nous voulons que chaque individu ait un lieu de travail et un seul, nous avons donc coché, dans la partie « Relation directe », la cardinalité Minimale à 1 et la cardinalité maximale à un aussi, ce qui en fait une application de l’ensemble des individus vers l’ensemble des bâtis qui associe à chaque individu, un bâti et un seul, celui dans lequel il travaille.  Dans la partie « Relation inverse », nous laissons les valeurs par défaut, ce qui fait de la relation inverse une relation quelconque (sans contraintes de cardinalité), qui associe à chaque bâti la liste (pouvant être vide) des individus travaillant dans ce bâti.
+
+-          L’instanciation des occurrences de la relation et l’initialisation des attributs, peuvent être réalisées par un fichier ou par un script. Nous choisissons une initialisation par un script. Qui indique que pour chaque individu on choisit un bâti dont l’attribut « TypeBati » a la valeur « Travail » . Cela donne le script d’initialisation suivant :
+
+Rel_travail.Clear
+FOR ind IN individu DO
+  bat := ONE b OF Bâti WHERE b.TypeBati=Travail
+  Occ:= [ind, bat]
+  Rel_travail.Add(Occ)
+ENDFOR
+ 
