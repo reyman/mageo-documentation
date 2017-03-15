@@ -6,32 +6,23 @@ La fenêtre de modélisation est celle dans laquelle est construit le modèle co
 
 Les entités d’un modèle conceptuel sont construites selon la symbolique suivante :
 
-[Tableau]
+
 .Entités du modèle conceptuel  :
 ====
-
 |===
 | Type d'entité | Symbole graphique
-
 | Agent unique | image:/assets/image004.jpg[alt=""]
-
 | Agent générique | image:/assets/image006.jpg[alt=""]
-
-| Comportement simple | image:/assets/image007.jpg[alt=""]
-
-| Comportement sous forme de diagramme de transition | image:/assets/image008.jpg[alt=""]
-
-| Organisation sociale (Population) | image:/assets/image0010.jpg[alt=""]
-
-| Organisation spatiale | image:/assets/image0012.jpg[alt=""]
-
+| Comportement simple | image:/assets/image007.png[alt=""]
+| Comportement sous forme de diagramme de transition | image:/assets/image008.png[alt=""]
+| Organisation sociale (Population) | image:/assets/image010.jpg[alt=""]
+| Organisation spatiale | image:/assets/image012.jpg[alt=""]
 |===
-
 ====
 
 Les relations entre entités graphiques sont construites selon la symbolique suivante :
 
-[Tableau]
+
 .Relations du modèle conceptuel  :
 ====
 
@@ -40,7 +31,7 @@ Les relations entre entités graphiques sont construites selon la symbolique sui
 
 | Appronfondissement | `Agent -> Organisation` | image:/assets/image014.jpg[alt=""]
 
-| Composition | `Organisation -> Agent` | image:/assets/image016.jpg[alt=""]
+| Composition | `Organisation -> Agent` | image:/assets/image016.png[alt=""]
 
 | Localisation | `Agent -> Agent` | image:/assets/image020.jpg[alt=""]
 
