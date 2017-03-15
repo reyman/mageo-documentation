@@ -81,6 +81,33 @@ Lorsqu’une classe agent est la classe-ancêtre d’une relation d’héritage,
 
 ==== Relations libres
 
+Un modèle conceptuel MAGéo peut être enrichi par des relations entre classes agents, permettant de localiser un agent sur un autre (c’est la relation de localisation), ou de spécifier des liens entre agents, par exemple la parenté, la hiérarchie, la possession, etc.
 
+Le premier type de relation « libre » que nous définissons est la relation de localisation qui est une fonction. Elle est évidemment fondamentale pour permettre la création de modèles spatialisés.
 
+==== Relation de localisation
+
+La relation de localisation permet au modélisateur de localiser des agents qui ne le sont pas initialement. Par exemple, une voiture sur une route, un canton dans une commune, une personne dans un groupe social, etc. Une relation de localisation est une fonction d’un ensemble d’agents A, vers un ensemble d’agents B. Dans le contexte de cette relation, les éléments de A sont alors appelés *passagers* et les éléments de B les *hôtes*.
+
+`Localisation : Agent-Passager -> Agent-hôte`
+
+La *relation de localisation* étant une fonction, elle associe à chaque passager un hôte au plus. Au niveau physique cette relation peut être statique ou dynamique. Dans le cas d’agents mobiles, par exemple d’automobiles qui se déplacent sur les tronçons d’un réseau, les véhicules sont les passagers des tronçons (ceux-ci sont alors les hôtes des voitures). Le déplacement des véhicules modifie à chaque pas de temps la fonction de localisation. On peut préciser des contraintes supplémentaires de cardinalité de la relation, par exemple en fixant le nombre maximum de voiture sur un tronçon.
+
+Une relation de localisation donne donc à chaque agent-passager sa position « qualitative », en quelque sorte son adresse, sous forme d’un composant hôte, qui est le lieu unique sur lequel il se trouve à un instant donné.
+
+Lorsque les hôtes sont des composants d’une organisation spatiale, la relation de localisation confère de plus aux passagers une position géométrique dans l’espace de son hôte. par exemple (x,y) pour un composant surfacique. L’agent qui devient un passager dans une relation de localisation est alors muni d’un repère local qui mémorise sa position et son orientation dans l’espace de son hôte. A chaque action de déplacement du passager, la référence à son hôte est mise à jour, ainsi que sa position géométrique.
+
+La relation de localisation peut également être statique, c’est le cas de la localisation des agents de l’organisation « départements » qui sont localisés dans les agents de l’organisation « régions », définies toutes deux comme étant des maillages irréguliers (cartes topologiques zonales). Cette relation peut facilement être initialisée à partir d’un attribut des agents département qui indiquent leur région hôte.
+
+La distinction entre *composant* et *passager* est ainsi fondamentale dans MAGéo. Un composant est un élément constitutif de l’agent composé, il fait partie de son intégrité, de son intérieur. Alors qu’un passager ne l’est nullement, il est de passage, en contact, dessus. De plus, ce lien n’est pas définitif si le passager est mobile. Par exemple l’habitant d’une ville n’est pas constitutif de la ville comme l’est un bâtiment ou une route. L’habitant est un passager dans la ville, le bâtiment en est un composant. Ainsi les concepts de composant et de passager permettent de modéliser des situations très différentes tout en gardant un caractère très général et très intuitif.
+
+Les termes de *composant*, *composé*, *passager*, et *hôte* ne sont par ailleurs pas des catégories d’agents, ils expriment simplement un rôle joué par l’agent dans un contexte donné, relativement à une relation de localisation donnée.
+
+==== Relation binaire entre classes d'agents
+
+Nous avons aussi besoin de relations plus générales que la simple localisation, permettant de créer des liens très variés entre une classe agent source et une classe agent cible. Par exemple, pour chaque individu de la classe $$P$$, on veut mémoriser son (ou ses) lieu(x) de travail de la classe agent $$C$$. On définit alors une relation binaire $$f$$ de $$P$$ vers $$C$$,  qui associe à tout individu $$i$$ de $$P$$, son (ou ses) lieu(x) de travail $$f(i)$$. Cette relation peut ressembler à une localisation, mais ce n’est pas le cas puisqu’un individu n’est pas toujours localisé sur son lieu de travail et peut même en avoir aucun ou plusieurs.
+
+==== Relation générale entre classes d'agents
+
+Pour être complet, MAGéo permet au modélisateur de définir des relations encore plus générales que les relations binaires entre classes d’agents, on parle alors de *relation n-aire*. Ce concept est pris ici au sens de l’algèbre relationnelle, c’est-à-dire qu’une relation n-aire définie sur les $$n$$ ensembles $$A, B, C, …$$  est un ensemble (fini) de *liens*, on parle aussi *d’occurrences* de la relation. Un lien de cette relation est une suite de $$n$$ termes de la forme $$(a, b, c, …)$$ où $$a$$ est un élément de $$A$$, $$b$$ un élément de $$B$$, $$c$$ un élément de $$C$$, etc. Les ensembles $$A, B, C,…$$ sont appelés composants de la relation lorsque ce sont des classes agents, ce peut être aussi des attributs complémentaires de type quelconque (entier, réel, texte, etc.).
 
