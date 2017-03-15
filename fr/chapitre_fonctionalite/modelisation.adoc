@@ -61,29 +61,126 @@ Un agent possède des attributs et un programme d’action. Celui-ci est un scri
 
 image::/assets/image027.png[align="center", caption="Dialogue de paramétrage d'un agent"]
 
-’interface de dialogue d’une classe agent permet de définir le contenu et la dynamique des agents. Elle contient :
+L’interface de dialogue d’une classe agent permet de définir le contenu et la dynamique des agents. Elle contient :
 
--          Un identifiant générique de classe, qui sert à définir les identifiants des instances en ajoutant à ce nom un numéro d’ordre ;
+-  Un identifiant générique de classe, qui sert à définir les identifiants des instances en ajoutant à ce nom un numéro d’ordre ;
 
--          Une liste d’attributs, qui représentent l’état de l’agent ;
+- Une liste d’attributs, qui représentent l’état de l’agent ;
 
--          La définition du programme d’action, qui précise l’ordonnancement des comportements de l’agent lors d’un pas de temps, au moyen d’un langage dédié (voir 5.3.4.) ;
+- La définition du programme d’action, qui précise l’ordonnancement des comportements de l’agent lors d’un pas de temps, au moyen d’un langage dédié (voir 5.3.4.) ;
 
--          L’ordonnancement des organisations internes, qui indique l’ordre dans lequel seront exécutés les comportements des agents internes lors d’un pas de temps (voir 5.3.2).
+- L’ordonnancement des organisations internes, qui indique l’ordre dans lequel seront exécutés les comportements des agents internes lors d’un pas de temps (voir 5.3.2).
 
 Les attributs d’une classe agent doivent être définis dans le tableau des attributs de cette classe. Cette définition consiste à renseigner les 4 champs suivants :
 
--          Le nom de cet attribut ;
+- Le nom de cet attribut ;
 
--          Le type de cet attribut, qui peut être un nombre entier, un nombre décimal, un nombre logique (nombre décimal entre 0 et 1), une chaîne de caractères, un vecteur, un agent, ou un énuméré. Dans MAGéo, une règle fondamentale est qu’un nom d’attribut ne peut être utilisé dans plusieurs classes agents que si le type associé est le même.
+- Le type de cet attribut, qui peut être un nombre entier, un nombre décimal, un nombre logique (nombre décimal entre 0 et 1), une chaîne de caractères, un vecteur, un agent, ou un énuméré. Dans MAGéo, une règle fondamentale est qu’un nom d’attribut ne peut être utilisé dans plusieurs classes agents que si le type associé est le même.
 
--          L’expression d’initialisation, écrite en langage MAGéo, qui sera évaluée à l’initialisation du modèle pour fournir la valeur initiale de l’attribut. Cette expression doit donc être du type indiqué dans la colonne précédente. Par exemple, un attribut entier peut prendre une valeur initiale aléatoire entre 0 et 100 par RandInt(0, 100).
+- L’expression d’initialisation, écrite en langage MAGéo, qui sera évaluée à l’initialisation du modèle pour fournir la valeur initiale de l’attribut. Cette expression doit donc être du type indiqué dans la colonne précédente. Par exemple, un attribut entier peut prendre une valeur initiale aléatoire entre 0 et 100 par `RandInt(0, 100)`.
 
--          L’expression de la dynamique de cet attribut, également écrite en langage MAGéo, est une expression donnant une nouvelle valeur à l’attribut, et qui sera évoquée lors d’un pas de temps si elle est indiquée dans le programme d’action à l’aide de la fonction Calc(). Par exemple, pour que l’attribut Age soit incrémenté à chaque itération, on peut écrire Age+1 dans le champ de dynamique de cet attribut, et l’invoquer en écrivant Calc(Age) dans le programme d’action.
+- L’expression de la dynamique de cet attribut, également écrite en langage MAGéo, est une expression donnant une nouvelle valeur à l’attribut, et qui sera évoquée lors d’un pas de temps si elle est indiquée dans le programme d’action à l’aide de la fonction `Calc()`. Par exemple, pour que l’attribut Age soit incrémenté à chaque itération, on peut écrire `Age+1` dans le champ de dynamique de cet attribut, et l’invoquer en écrivant `Calc(Age)` dans le programme d’action.
 
 ==== Paramétrage des organisations
 
+MAGéo propose actuellement 3 types d’organisations spatiales prédéfinies :
+
+- Les *maillages réguliers* en carrés ou en hexagones ;
+
+- Les *maillages irréguliers* qui permettent de réaliser des cartes zonales topologiques ;
+
+- Les réseaux.
+
+MAGéo propose également 2 types d’organisations sociales :
+
+- Les organisations constituées d’une population générique ;
+
+- Les organisations compartimentées.
+
+Une organisation ayant pour rôle de définir la structure unifiant une collection d’agents, appelés composants de l’organisation, et de gérer les interactions entre ces composants, tous les types d’organisation contiennent :
+
+- Un identifiant générique de classe d’organisation, qui sert à définir les identifiants des instances d’organisation, si besoin en ajoutant à ce nom un numéro d’ordre ;
+
+- La méthode d’instanciation de ses agents composants, qui définit le nombre d’agents à créer ;
+
+- La méthode d’initialisation de ses agents composants qui peut-être directe (une expression par exemple) ou réalisée à partir d’un fichier contenant une table attributaire ;
+
+- La méthode d’ordonnancement de ses agents composants. Elle peut être synchrone (les agents s’exécutent en parallèle), asynchrone (ils s’exécutent selon une séquence dont l’ordre est tiré au hasard) ou selon un ordre défini par une expression dépendant de l’état du modèle.
+
+Selon les organisations, des paramétrages particuliers sont nécessaires. Pour une organisation spatiale, on définira les relations topologiques qui relient et structurent les voisinages de ses agents composants. Pour une organisation sociale, on décrira les différentes relations qui existent entre les individus composants une population. Selon le type d’organisation, un dialogue différent est donc défini.
+
+===== Maillage régulier
+
+Un maillage régulier contient différents paramètres, qui permettent de définir la structure (la taille, la forme et le nombre de cellules en lignes et colonnes), la topologie (induite par une métrique), la présence de fichier d’initialisation de ses composants.
+
+image:/assets/image029.png[alt="Paramétrage d'un maillage régulier"]
+
+Dans le groupe « Description » l’utilisateur définit l’identifiant du maillage, l’agent hôte n’est pas modifiable, étant défini par la relation d’approfondissement. L’agent hôte est celui qui est organisé (ou approfondi) par cette organisation. Par exemple (fig 5) l’agent « modèle » et organisé par le maillage nommé « Terrain ».
+
+Ce groupe contient différents autres sous-groupes :
+
+- _Activation des agents composants_ : dans le cas d’une organisation en maillage régulier, l’activation des agents composants le modèle se fait par le biais de carreaux représentant l’espace.
+
+- _Pondération spatiale_ : ce groupe permet de choisir une fonction qui détermine la pondération d’un objet dans le voisinage d’une maille, selon sa distance au centre de cette maille. Cette pondération est prise en compte dans certaines fonctions spatiales (voir le chapitre sur les fonctions spatiales)
+
+- _Topologie (Choix de la métrique)_ : La topologie permet de définir la structure des voisinages dans le maillage. Cette structure est induite par la métrique de l’espace qui est choisie.
+
+La métrique euclidienne d2 est définie par la formule :  $$d_2(P, P0)= \sqrt{(|x-x0|^2+|y-y0|^2)}$$
+
+Elle définit des voisinages sous forme de disques circulaires autour du centre de chaque maille, selon un rayon donné.
+
+La métrique dMax  est définie par la formule :   $$d_{Max}(P, P0)= Max(|x-x0|+|y-y0|)$$
+
+Elle prend comme distance entre un point $$P$$ et le centre $$P0$$ d’une maille, le maximum des écarts entre les $$x$$ et les $$y$$. Cette distance induit des voisinages dits « de Moore » qui sont de forme en losange autour du centre de la maille.
+
+Le voisinage « de Manhattan » est définie par la métrique $$d_1$$ définie par la formule : $$d_1 (P, P0)= |x-x0|+|y-y0|$$
+
+Elle donne des voisinages carrés autour du centre de la maille.
+
+image:/assets/image032.jpg[alt="Voisinages selon les topologies et les rayons"]
+
+- _Morphologie du domaine_ : Elle indique si le domaine de simulation possède des limites (rectangle limité) ou si celui-ci est sans limites tout en restant de surface finie. Ceci est obtenu par une morphologie torique, c’est-à-dire qu' une maille située sur un bord est voisine de la maille correspondante sur le bord opposé (voir figure)
+
+- _Forme des mailles_ : il existe deux formes possibles pour les mailles : carrées  ou hexagonales
+
+- _Groupes instanciation et données d’initialisation_ : on peut réaliser (ou instancier) un maillage soit en définissant ses dimensions et son géoréférencement directement dans le dialogue (option « directe »), soit en chargeant un fichier qui décrit le maillage (option « fichier ») sous forme de données tabulaires (format texte tabulé de type « grid-ArcView »)
+
+- _Dimensions et géoréférencement_ : lorsqu’on définit directement le maillage, on donne le nombre de lignes et de colonnes et le cas échéant le géoréférencement par les coordonnées de l’origine (coin-bas-gauche du maillage), l’unité de longueur et la taille de la maille selon cette unité
+
+- _Exécution des agents composants_ : Lors de l’exécution du modèle, on propose trois manières d’ordonnancer l’exécution des agents composants le maillage :
+   * soit en synchrone (ou en parallèle) c’est-à-dire que les agents s’exécutent tous en même temps dans un pas de temps.
+
+    * Soit en asynchrone, c’est-à-dire que les agents sont exécutés les uns après les autres dans un ordre aléatoire qui change à chaque pas de temps.
+
+    * Soit par ordre décroissant selon une expression donnée par l’utilisateur.
+
 ==== Paramétrage des comportements
+
+Le même dialogue est utilisé pour paramétrer un réseau ou un maillage zonal irrégulier.
+
+Dans un maillage zonal (voir ci-dessous), on utilise des composants surfaciques, les faces. Dans un réseau on utilise deux classes de composants, des Nœuds (composants ponctuels) et des tronçons (composants linéaires). Les données sont chargées depuis un fichier.
+
+image:/assets/image034.jpg[alt="Dialogue de paramétrage d'un maillage topologique"]
+
+Dans le groupe « Description » : Comme pour le maillage régulier, l’utilisateur définit l’identifiant du maillage et l’agent hôte.
+
+Lorsque l’organisation sélectionnée est un réseau, l’activation des agents composants se fait par des nœuds et lorsque c’est un maillage irrégulier par des faces.
+
+La topologie définit la notion de voisinage. On peut utiliser la contiguïté entre zones pour une carte, ou entre tronçons pour un réseau. Dans les deux cas, on peut également utiliser une distance seuil pour décider si un élément est voisin ou non d’un autre. Par exemple, on considère comme voisinage de la région Normandie, dans le choix par contiguïté : toutes les régions ayant une frontière commune (de longueur non nulle) avec la Normandie ; dans le choix par distance seuil : toutes les régions dont le centre est situé à moins de 300 km (par exemple) du centre de la Normandie.
+
+Dans le groupe « Données cartographiques », l’identifiant de la carte est le nom du fichier (dans le répertoire de données du modèle) qui sert à charger la carte lors de l’initialisation du modèle. Le bouton « Importer une carte » permet d’importer dans le répertoire du modèle un fichier cartographique (fichiers « shapefile » arcgis ou « generate » arc/info) lors la conception du modèle.
+
+Le groupe « Données Attributaires » permet d’importer la table qui contient les données qui serviront d’attributs pour les agents composants de l’organisation. Dans le cas de l’importation d’un fichier « shapefile », la table attributaire de ce dernier est importée directement dans cette rubrique. On peut également importer tout autre fichier texte tabulé sous forme de table qui doit être en cohérence avec les attributs des agents composants de l’organisation.
+
+Le groupe « Exécution des agents composants » : Lors de l’exécution du modèle, on propose trois manières d’ordonnancer l’exécution des agents composants, comme pour le maillage régulier :
+
+- Soit en synchrone (ou en parallèle) c’est-à-dire que les agents s’exécutent tous en même temps dans un pas de temps.
+
+- Soit en asynchrone, c’est-à-dire que les agents sont exécutés les uns après les autres dans un ordre aléatoire qui change à chaque pas de temps.
+
+- Soit par ordre décroissant selon une expression donnée par l’utilisateur.
+
+
 
 ==== Paramétrage des relations de localisation
 
