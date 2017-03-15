@@ -1,3 +1,9 @@
 == Les fonctionalités
 
-bla
+Nous décrivons ici, dans le détail, l’ensemble des éléments contenue dans la plateforme MAGéo et des fonctionnalités associées à ces éléments. Lorsqu’on lance le logiciel, la fenêtre principale porte un menu général et deux fenêtres : La fenêtre de Modélisation et celle de Simulation.
+
+La fenêtre de Modélisation contient déjà une entité nommé « Modèle » qui est l’agent racine à partir duquel tout modèle se construit. Cette entité est sélectionnée (par huit picots rouges) qui indique qu’elle possède la focalisation.
+
+La fenêtre Simulation est composée de deux parties : un groupe supérieur nommé « Exécution » qui contient quelques boutons et champs qui servent aux commandes de base de toute simulation. Un groupe inférieur, qui est vierge et dans lequel se développera l’interface de simulation spécifique au modèle à définir.
+
+image:/assets/image001.png[alt="La fenêtre principale de la plateforme"]
