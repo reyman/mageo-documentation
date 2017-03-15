@@ -11,12 +11,12 @@ Les entités d’un modèle conceptuel sont construites selon la symbolique suiv
 ====
 |===
 | Type d'entité | Symbole graphique
-| Agent unique | image:/assets/image004.jpg[alt=""]
-| Agent générique | image:/assets/image006.jpg[alt=""]
-| Comportement simple | image:/assets/image007.png[alt=""]
-| Comportement sous forme de diagramme de transition | image:/assets/image008.png[alt=""]
-| Organisation sociale (Population) | image:/assets/image010.jpg[alt=""]
-| Organisation spatiale | image:/assets/image012.jpg[alt=""]
+| Agent unique | image:../assets/image004.jpg[alt=""]
+| Agent générique | image:../assets/image006.jpg[alt=""]
+| Comportement simple | image:../assets/image007.png[alt=""]
+| Comportement sous forme de diagramme de transition | image:../assets/image008.png[alt=""]
+| Organisation sociale (Population) | image:../assets/image010.jpg[alt=""]
+| Organisation spatiale | image:../assets/image012.jpg[alt=""]
 |===
 ====
 
@@ -29,13 +29,13 @@ Les relations entre entités graphiques sont construites selon la symbolique sui
 |===
 | Type de relation | Définition | Symbolique
 
-| Appronfondissement | `Agent -> Organisation` | image:/assets/image014.jpg[alt=""]
+| Appronfondissement | `Agent -> Organisation` | image:../assets/image014.jpg[alt=""]
 
-| Composition | `Organisation -> Agent` | image:/assets/image016.png[alt=""]
+| Composition | `Organisation -> Agent` | image:../assets/image016.png[alt=""]
 
-| Localisation | `Agent -> Agent` | image:/assets/image020.jpg[alt=""]
+| Localisation | `Agent -> Agent` | image:../assets/image020.jpg[alt=""]
 
-| Localisation étendue | `Agent -> (Agent, ... , Agent)` |image:/assets/image022.jpg[alt=""]
+| Localisation étendue | `Agent -> (Agent, ... , Agent)` |image:../assets/image022.jpg[alt=""]
 
 |===
 
@@ -45,11 +45,11 @@ Les relations entre entités graphiques sont construites selon la symbolique sui
 
 La seule entité présente par défaut lors de la création d’un nouveau modèle est l’agent unique « Modèle ». Un clic droit sur cette entité, et sur toute entité en général, permet d’afficher un menu contextuel (voir Figure 2) qui contient toutes les possibilités pour compléter le modèle, c’est-à-dire ajouter des organisations, des comportements et diverses relations. Un simple clic (bouton gauche) sur une entité permet de la sélectionner, un double-clic permet d’entrer dans l’entité sélectionnée, c’est-à-dire d’afficher son dialogue de paramétrage.
 
-image:/assets/image024.jpg[alt="Menu contextuel associé à un type d'entité (ici un agent)"]
+image:../assets/image024.jpg[alt="Menu contextuel associé à un type d'entité (ici un agent)"]
 
 En utilisant les choix proposés par ce menu, puis après le positionnement et le dimensionnement des différentes entités créées, le modèle conceptuel se construit progressivement. La Figure 4 illustre un modèle conceptuel complet.
 
-image:/assets/image026.jpg[alt="Exemple de modèle conceptuel"]
+image:../assets/image026.jpg[alt="Exemple de modèle conceptuel"]
 
 === Paramétrage des entités conceptuelles
 
@@ -160,7 +160,7 @@ Le même dialogue est utilisé pour paramétrer un réseau ou un maillage zonal 
 
 Dans un maillage zonal (voir ci-dessous), on utilise des composants surfaciques, les faces. Dans un réseau on utilise deux classes de composants, des Nœuds (composants ponctuels) et des tronçons (composants linéaires). Les données sont chargées depuis un fichier.
 
-image:/assets/image034.jpg[alt="Dialogue de paramétrage d'un maillage topologique"]
+image:../assets/image034.jpg[alt="Dialogue de paramétrage d'un maillage topologique"]
 
 Dans le groupe « Description » : Comme pour le maillage régulier, l’utilisateur définit l’identifiant du maillage et l’agent hôte.
 
@@ -184,7 +184,7 @@ La topologie définit la notion de voisinage. On peut utiliser la contiguïté e
 
 Une organisation « sociale » est d’abord une organisation non spatiale, qui repose sur un ensemble d’agents composants appelé population. Ces agents ne sont pas localisés _a priori_ mais peuvent le devenir si on définit une relation de localisation de ces agents vers les composants d’une organisation spatiale. Une organisation sociale, munie de sa population, ne contient donc pas de structure particulière à sa création, c’est au modélisateur de définir les relations qui structureront la population.
 
-image:/assets/image035.png[alt="Paramétrage d'une organisation sociale"]
+image:../assets/image035.png[alt="Paramétrage d'une organisation sociale"]
 
 Dans le groupe «Description », l’utilisateur définit l’identifiant de la population ainsi que l’agent hôte. Il définit également les compétences de la population, c’est-à-dire que soit celle-ci est localisée dans un espace continu, soit elle interagit de façon mobile dans l’espace.
 
@@ -216,11 +216,11 @@ Le contenu de ces zones de texte n’est pas détaillé ici, il le sera dans la 
 
 L’exemple ci-dessous (Figure 6 : Paramétrage d'un comportement simple) montre quelques exemples d’expressions où les termes « VentDuCourant », « VentDeLaVitesse » etc. sont des variables locales et temporaires. A un instant donné, si le programme d’action de l’agent décide d’exécuter ce comportement (ici « Navigue », les calculs de la zone des variables temporaires seront exécutés, par contre la partie action ne sera exécutée que si la pertinence n’est pas fausse.
 
-image:/assets/image043.jpg[alt="Dialogue de comportement"]
+image:../assets/image043.jpg[alt="Dialogue de comportement"]
 
 La figure suivante montre l’exemple d’un comportement nommé Move. Celui-ci est pertinent s’il existe au moins une cellule non bâtie dans l’ensemble des cellules du voisinage de rayon 2 de l’agent en cours d’exécution. Son action consiste alors à ce que l’agent change de localisation, en devenant le passager d’une cellule choisie au hasard parmi les cellules non-bâties de son voisinage.
 
-image:/assets/image039.png[alt="Comportement Move"]
+image:../assets/image039.png[alt="Comportement Move"]
 
 ===== Diagrammes de transitions
 
@@ -236,9 +236,9 @@ Si plusieurs règles ont le même état initial alors ces règles sont en concur
 
 Par exemple, dans un modèle de diffusion d’une maladie infectieuse, l’agent possède une variable d’état représentée par l’attribut qualitatif « State ». Cette variable peut prendre les trois états « S » lorsqu’il est sain, « I » lorsqu’il est malade (Infecté) et « R » lorsqu’il est guéri (Remis) et momentanément immunisé après avoir été infecté. Le diagramme permet de définir un graphe des trois transitions  (voir Figure 8). Ici un agent dans l’état S passera à l’état I selon la règle R1 s’il existe parmi l’ensemble des agents mobiles se situant dans son voisinage de rayon 2 au moins un agent dans l’état I et selon une probabilité de transmission de 5%.
 
-image:/assets/image041.png[alt="Paramétrage d'un diagramme de transition"]
+image:../assets/image041.png[alt="Paramétrage d'un diagramme de transition"]
 
-image:/assets/image044.jpg[alt="Définition de la règle de transition R1"]
+image:../assets/image044.jpg[alt="Définition de la règle de transition R1"]
 
 ==== Paramétrage des relations de localisation
 
@@ -269,7 +269,7 @@ Le dialogue d’une relation de localisation permet d’ailleurs de définir tro
 
 - Les copassagers : cette fonction, par exemple nommée `MesCongenères`, permet de récupérer la liste des autres passagers localisés sur le même composant hôte qu’un agent passager donné, par l’appel `Jeton34.MesCongenères`.
 +
-image:/assets/DialogueRelationLoc.png[alt="Dialogue de paramétrage d'une relation de localisation", align="center"]
+image:../assets/DialogueRelationLoc.png[alt="Dialogue de paramétrage d'une relation de localisation", align="center"]
 
 Une fois ces noms définis dans le dialogue, les fonctions décrites ci-dessus viennent s’ajouter au langage, et peuvent alors être utilisées dans les comportements.
 
@@ -329,5 +329,5 @@ Renvoie la liste des individus qui travaillent dans le Bâti y. Cette relation �
 
 Le dialogue une fois renseigné se présente ainsi :
  
-image:/assets/DialogueRelationGen.png[alt="Dialogue de paramétrage d'une relation binaire"]
+image:../assets/DialogueRelationGen.png[alt="Dialogue de paramétrage d'une relation binaire"]
  
