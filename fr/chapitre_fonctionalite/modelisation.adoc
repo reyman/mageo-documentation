@@ -124,19 +124,19 @@ Ce groupe contient différents autres sous-groupes :
 - _Pondération spatiale_ : ce groupe permet de choisir une fonction qui détermine la pondération d’un objet dans le voisinage d’une maille, selon sa distance au centre de cette maille. Cette pondération est prise en compte dans certaines fonctions spatiales (voir le chapitre sur les fonctions spatiales)
 
 - _Topologie (Choix de la métrique)_ : La topologie permet de définir la structure des voisinages dans le maillage. Cette structure est induite par la métrique de l’espace qui est choisie.
-
++
 La métrique euclidienne d2 est définie par la formule :  $$d_2(P, P0)= \sqrt{(|x-x0|^2+|y-y0|^2)}$$
-
++
 Elle définit des voisinages sous forme de disques circulaires autour du centre de chaque maille, selon un rayon donné.
-
++
 La métrique dMax  est définie par la formule :   $$d_{Max}(P, P0)= Max(|x-x0|+|y-y0|)$$
-
++
 Elle prend comme distance entre un point $$P$$ et le centre $$P0$$ d’une maille, le maximum des écarts entre les $$x$$ et les $$y$$. Cette distance induit des voisinages dits « de Moore » qui sont de forme en losange autour du centre de la maille.
-
++
 Le voisinage « de Manhattan » est définie par la métrique $$d_1$$ définie par la formule : $$d_1 (P, P0)= |x-x0|+|y-y0|$$
-
++
 Elle donne des voisinages carrés autour du centre de la maille.
-
++
 image:/assets/image032.jpg[alt="Voisinages selon les topologies et les rayons"]
 
 - _Morphologie du domaine_ : Elle indique si le domaine de simulation possède des limites (rectangle limité) ou si celui-ci est sans limites tout en restant de surface finie. Ceci est obtenu par une morphologie torique, c’est-à-dire qu' une maille située sur un bord est voisine de la maille correspondante sur le bord opposé (voir figure)
@@ -268,7 +268,7 @@ Le dialogue d’une relation de localisation permet d’ailleurs de définir tro
 - Les passagers : cette fonction, par exemple nommée `MesJetons` dans l’exemple ci-dessous, permet de renvoyer la liste des passagers d’un agent case donné, par l’appel `Case67.MesJetons` ;
 
 - Les copassagers : cette fonction, par exemple nommée `MesCongenères`, permet de récupérer la liste des autres passagers localisés sur le même composant hôte qu’un agent passager donné, par l’appel `Jeton34.MesCongenères`.
-
++
 image:/assets/DialogueRelationLoc.png[alt="Dialogue de paramétrage d'une relation de localisation"]
 
 Une fois ces noms définis dans le dialogue, les fonctions décrites ci-dessus viennent s’ajouter au langage, et peuvent alors être utilisées dans les comportements.
@@ -277,29 +277,32 @@ Une fois ces noms définis dans le dialogue, les fonctions décrites ci-dessus v
 
 Une relation dite générale permet de relier entre elles au moins deux classes–agent. et éventuellement, en leur adjoignant quelques attributs complémentaires.
 
-Dans le chapitre des principes (Relations libres), on a distingué trois catégories de relation: les relations de localisation (qui sont des fonctions entre ensembles d’agents), les relations binaires,  et les relations n-aires (ayant plus de deux composants). Les relations binaires de type `Rel(A, B)` entre un ensemble source d’agents A et un ensemble cible d’agents B, sont importantes car elles permettent de définir en fait deux relations distinctes, la relation directe R:A®B et la relation inverse `$$R^{-1}:B -> A$$`. Ces deux relations sont nommées explicitement par l’utilisateur lors de la définition du schéma  de la relation générale. Nous verrons un exemple précis pour illustrer cela, mais regardons d’abord les étapes de la création d’une relation binaire à travers un exemple.
+Dans le chapitre des principes (Relations libres), on a distingué trois catégories de relation: les relations de localisation (qui sont des fonctions entre ensembles d’agents), les relations binaires,  et les relations n-aires (ayant plus de deux composants). Les relations binaires de type `Rel(A, B)` entre un ensemble source d’agents A et un ensemble cible d’agents B, sont importantes car elles permettent de définir en fait deux relations distinctes, la relation directe $$R:A \rightarrow B$$ et la relation inverse $$R^{-1}:B \rightarrow A$$. Ces deux relations sont nommées explicitement par l’utilisateur lors de la définition du schéma  de la relation générale. Nous verrons un exemple précis pour illustrer cela, mais regardons d’abord les étapes de la création d’une relation binaire à travers un exemple.
 
-Exemple : Nous disposons d’une Population d’individus (localisés par ailleurs dans un espace urbain) et une organisation « Bâtiments » contenant une classe agent nommée Bâti ayant un attribut TypeBati de type énuméré TypeDeBati = (Habitation, Travail).  On veut associer pour chaque individu, un et un seul lieu de travail (ce qui en fait une application). 
+Exemple : Nous disposons d’une `Population` d’individus (localisés par ailleurs dans un espace urbain) et une organisation `Bâtiments` contenant une classe agent nommée `Bâti` ayant un attribut `TypeBati` de type énuméré `TypeDeBati = (Habitation, Travail)`.  On veut associer pour chaque individu, un et un seul lieu de travail (ce qui en fait une application). 
 
-1)      Pour créer la relation binaire « Rel_Travail »  On clique-droit sur la classe Individu et on choisit l’item « Créer relation binaire », puis on clique sur la classe Bâti pour achever de dessiner le schéma de la relation.
+. Pour créer la relation binaire `Rel_Travail`  On clique-droit sur la classe Individu et on choisit l’item « Créer relation binaire », puis on clique sur la classe Bâti pour achever de dessiner le schéma de la relation.
 
-2)      On double-clique sur le connecteur Rel qu’on vient de créer, pour ouvrir le dialogue de paramétrage de la relation binaire.
+. On double-clique sur le connecteur `Rel` qu’on vient de créer, pour ouvrir le dialogue de paramétrage de la relation binaire.
 
-3)      Dans ce dialogue il faut renseigner les informations suivantes :
+. Dans ce dialogue il faut renseigner les informations suivantes :
 
--          L’identifiant de la relation : REL_Travail,
+.. L’identifiant de la relation : `REL_Travail`,
 
--          Les classes d’agents composant la relation : elles ont été créées graphiquement à l’étape 2 par les liens qui référencent les classes d’agents participant à la relation. Ces classes d’agents apparaissent comme les premiers attributs de la relation avec un nom par défaut. Nous allons modifier ces noms pour les rendre plus explicites, car ils servent à définir les relations R et R-1 dont on a parlé plus haut :
+.. Les classes d’agents composant la relation : elles ont été créées graphiquement à l’étape 2 par les liens qui référencent les classes d’agents participant à la relation. Ces classes d’agents apparaissent comme les premiers attributs de la relation avec un nom par défaut. Nous allons modifier ces noms pour les rendre plus explicites, car ils servent à définir les relations $$R$$ et $$R^{-1}$$ dont on a parlé plus haut :
 
--          Le premier nom de composant choisi définit la fonction R-1 : LesTravailleursDe .
+- Le premier nom de composant choisi définit la fonction $$R^{-1}$$ : `LesTravailleursDe` .
 
--          Le deuxième nom de composant définit la fonction R : MonTravail .
+- Le deuxième nom de composant définit la fonction $$R$$ : `MonTravail` .
 
--          Les attributs complémentaires sont à définir dans ce dialogue, et sont de type numérique, logiques ou textuels, et apportent des informations complémentaires aux différentes occurrences de la relation, nous n’en définissons pas.
+- Les attributs complémentaires sont à définir dans ce dialogue, et sont de type numérique, logiques ou textuels, et apportent des informations complémentaires aux différentes occurrences de la relation, nous n’en définissons pas.
 
--          Le groupe « Contraintes de cardinalités de la relation », doit être renseigné, car il indique de type de résultat attendu pour les relations  R et R-1. Dans notre exemple, nous voulons que chaque individu ait un lieu de travail et un seul, nous avons donc coché, dans la partie « Relation directe », la cardinalité Minimale à 1 et la cardinalité maximale à un aussi, ce qui en fait une application de l’ensemble des individus vers l’ensemble des bâtis qui associe à chaque individu, un bâti et un seul, celui dans lequel il travaille.  Dans la partie « Relation inverse », nous laissons les valeurs par défaut, ce qui fait de la relation inverse une relation quelconque (sans contraintes de cardinalité), qui associe à chaque bâti la liste (pouvant être vide) des individus travaillant dans ce bâti.
+- Le groupe « Contraintes de cardinalités de la relation », doit être renseigné, car il indique de type de résultat attendu pour les relations  $$R$$ et $$R^{-1}$$. Dans notre exemple, nous voulons que chaque individu ait un lieu de travail et un seul, nous avons donc coché, dans la partie « Relation directe », la cardinalité minimale à 1 et la cardinalité maximale à un aussi, ce qui en fait une application de l’ensemble des individus vers l’ensemble des bâtis qui associe à chaque individu, un bâti et un seul, celui dans lequel il travaille.  Dans la partie « Relation inverse », nous laissons les valeurs par défaut, ce qui fait de la relation inverse une relation quelconque (sans contraintes de cardinalité), qui associe à chaque bâti la liste (pouvant être vide) des individus travaillant dans ce bâti.
 
--          L’instanciation des occurrences de la relation et l’initialisation des attributs, peuvent être réalisées par un fichier ou par un script. Nous choisissons une initialisation par un script. Qui indique que pour chaque individu on choisit un bâti dont l’attribut « TypeBati » a la valeur « Travail » . Cela donne le script d’initialisation suivant :
+- L’instanciation des occurrences de la relation et l’initialisation des attributs, peuvent être réalisées par un fichier ou par un script. Nous choisissons une initialisation par un script. Qui indique que pour chaque individu on choisit un bâti dont l’attribut `TypeBati` a la valeur `Travail`. Cela donne le script d’initialisation suivant :
++
+[listing]
+----
 
 Rel_travail.Clear
 FOR ind IN individu DO
@@ -307,4 +310,24 @@ FOR ind IN individu DO
   Occ:= [ind, bat]
   Rel_travail.Add(Occ)
 ENDFOR
+----
+
+Une fois le dialogue validé, la relation `Rel_Travail(LesTravailleursDe:Individu, MonTravail:Bâti)` donne accès à trois fonctions utilisables dans les scripts de comportement ou de zones d’initialisation, où x est un Individu et y un Bâti :
+
+. La fonction booléenne d’existence `Rel_Travail(x,y) -> Logic` 
++
+Cette fonction renvoie `TRUE` si le couple (x, y) est bien une occurrence de la relation (une ligne de la relation), `FALSE` sinon.
+
+. La relation directe `MonTravail(x) -> Bâti`
++
+Cette relation renvoie le Bâti (unique) dans lequel travaille l’individu x.
+
+. La relation inverse `LesTravailleursDe(y) -> Liste<Individu>`
++
+Renvoie la liste des individus qui travaillent dans le Bâti y. Cette relation équivaut à `ALL x FROM LesTravailleursDe WHERE Rel_Travail(x,y)`
+
+
+Le dialogue une fois renseigné se présente ainsi :
+ 
+image:/assets/DialogueRelationGen.png[alt="Dialogue de paramétrage d'une relation binaire"]
  
