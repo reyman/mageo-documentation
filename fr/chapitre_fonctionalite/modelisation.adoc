@@ -50,10 +50,15 @@ Les relations entre entités graphiques sont construites selon la symbolique sui
 
 ====
 
-
-
-
 === Principe de construction d’un modèle dans MAGEO
+
+La seule entité présente par défaut lors de la création d’un nouveau modèle est l’agent unique « Modèle ». Un clic droit sur cette entité, et sur toute entité en général, permet d’afficher un menu contextuel (voir Figure 2) qui contient toutes les possibilités pour compléter le modèle, c’est-à-dire ajouter des organisations, des comportements et diverses relations. Un simple clic (bouton gauche) sur une entité permet de la sélectionner, un double-clic permet d’entrer dans l’entité sélectionnée, c’est-à-dire d’afficher son dialogue de paramétrage.
+
+image:/assets/image024.jpg[alt="Menu contextuel associé à un type d'entité (ici un agent)"]
+
+En utilisant les choix proposés par ce menu, puis après le positionnement et le dimensionnement des différentes entités créées, le modèle conceptuel se construit progressivement. La Figure 4 illustre un modèle conceptuel complet.
+
+image:/assets/image026.jpg[alt="Exemple de modèle conceptuel"]
 
 === Paramétrage des entités conceptuelles
 
