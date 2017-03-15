@@ -168,17 +168,17 @@ Lorsque l’organisation sélectionnée est un réseau, l’activation des agent
 
 La topologie définit la notion de voisinage. On peut utiliser la contiguïté entre zones pour une carte, ou entre tronçons pour un réseau. Dans les deux cas, on peut également utiliser une distance seuil pour décider si un élément est voisin ou non d’un autre. Par exemple, on considère comme voisinage de la région Normandie, dans le choix par contiguïté : toutes les régions ayant une frontière commune (de longueur non nulle) avec la Normandie ; dans le choix par distance seuil : toutes les régions dont le centre est situé à moins de 300 km (par exemple) du centre de la Normandie.
 
-Dans le groupe « Données cartographiques », l’identifiant de la carte est le nom du fichier (dans le répertoire de données du modèle) qui sert à charger la carte lors de l’initialisation du modèle. Le bouton « Importer une carte » permet d’importer dans le répertoire du modèle un fichier cartographique (fichiers « shapefile » arcgis ou « generate » arc/info) lors la conception du modèle.
+- _Dans le groupe « Données cartographiques »_, l’identifiant de la carte est le nom du fichier (dans le répertoire de données du modèle) qui sert à charger la carte lors de l’initialisation du modèle. Le bouton « Importer une carte » permet d’importer dans le répertoire du modèle un fichier cartographique (fichiers « shapefile » arcgis ou « generate » arc/info) lors la conception du modèle.
 
-Le groupe « Données Attributaires » permet d’importer la table qui contient les données qui serviront d’attributs pour les agents composants de l’organisation. Dans le cas de l’importation d’un fichier « shapefile », la table attributaire de ce dernier est importée directement dans cette rubrique. On peut également importer tout autre fichier texte tabulé sous forme de table qui doit être en cohérence avec les attributs des agents composants de l’organisation.
+- _Le groupe « Données Attributaires »_ permet d’importer la table qui contient les données qui serviront d’attributs pour les agents composants de l’organisation. Dans le cas de l’importation d’un fichier « shapefile », la table attributaire de ce dernier est importée directement dans cette rubrique. On peut également importer tout autre fichier texte tabulé sous forme de table qui doit être en cohérence avec les attributs des agents composants de l’organisation.
 
-Le groupe « Exécution des agents composants » : Lors de l’exécution du modèle, on propose trois manières d’ordonnancer l’exécution des agents composants, comme pour le maillage régulier :
+- _Le groupe « Exécution des agents composants »_ : Lors de l’exécution du modèle, on propose trois manières d’ordonnancer l’exécution des agents composants, comme pour le maillage régulier :
 
-- Soit en synchrone (ou en parallèle) c’est-à-dire que les agents s’exécutent tous en même temps dans un pas de temps.
+* Soit en synchrone (ou en parallèle) c’est-à-dire que les agents s’exécutent tous en même temps dans un pas de temps.
 
-- Soit en asynchrone, c’est-à-dire que les agents sont exécutés les uns après les autres dans un ordre aléatoire qui change à chaque pas de temps.
+* Soit en asynchrone, c’est-à-dire que les agents sont exécutés les uns après les autres dans un ordre aléatoire qui change à chaque pas de temps.
 
-- Soit par ordre décroissant selon une expression donnée par l’utilisateur.
+* Soit par ordre décroissant selon une expression donnée par l’utilisateur.
 
 
 
