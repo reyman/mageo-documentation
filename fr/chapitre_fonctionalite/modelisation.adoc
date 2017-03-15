@@ -1,0 +1,23 @@
+== L’interface de modélisation
+
+La fenêtre de modélisation est celle dans laquelle est construit le modèle conceptuel, sous une forme arborescente composée d’entités et de relations. La méthode de construction d’un modèle consiste à ajouter des organisations à l’agent modèle (et aux agents en général), organisations qui contiennent elles-mêmes des classes d’agents composants. Puis on ajoute des relations entre classes agent. Vient ensuite la mise en place des comportements. A ce niveau on travaille de manière uniquement graphique, sans entrer dans les détails internes (sauf pour changer éventuellement leur nom), chaque entité conceptuelle étant concrétisée par un symbole graphique particulier et les relations par des flèches et des lignes entre ces entités.
+
+=== La symbolique des entités et des relations du modèle conceptuel
+
+Les entités d’un modèle conceptuel sont construites selon la symbolique suivante :
+
+
+
+=== Principe de construction d’un modèle dans MAGEO
+
+=== Paramétrage des entités conceptuelles
+
+==== Paramétrage des agents
+
+==== Paramétrage des organisations
+
+==== Paramétrage des comportements
+
+==== Paramétrage des relations de localisation
+
+==== Paramétrage des relations générales
