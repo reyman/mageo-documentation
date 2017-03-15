@@ -76,8 +76,10 @@ Une classe agent peut être approfondie par plusieurs organisations, mais une or
 
 Lorsqu’une classe agent est la classe-ancêtre d’une relation d’héritage, elle devient une classe abstraite, c’est-à-dire qu’elle ne sera pas instanciée. Comme une sous-classe peut elle-même être l’ancêtre d’une classe encore plus fine, seules les sous-classes terminales (qui ne sont ancêtres d’aucune autre) seront instanciées. Le programme d’action n’est présent que dans les classes terminales. Chaque classe terminale contient aussi les fonctionnalités d’instanciation et d’initialisation des instances de sa classe.
 
-- *Lien de compétence *: un dernier lien graphique est automatiquement créé lorsque l’on veut munir une classe agent d’un comportement. L’agent possède alors la compétence définie par ce comportement. Plusieurs classes agent peuvent avoir une même compétence et une même classe agent peut avoir plusieurs compétences.
+- *Lien de compétence* : un dernier lien graphique est automatiquement créé lorsque l’on veut munir une classe agent d’un comportement. L’agent possède alors la compétence définie par ce comportement. Plusieurs classes agent peuvent avoir une même compétence et une même classe agent peut avoir plusieurs compétences.
 
+
+==== Relations libres
 
 
 
