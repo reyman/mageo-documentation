@@ -11,4 +11,7 @@
 .. link:chapitre_langage/description_fct_mathematique.adoc[Fonctions mathématique usuelles]
 . link:./chapitre_fonctionalite/les_fonctionalites.adoc[Les fonctionalités]
 . link:./chapitre_principes/les_principes.adoc[Les principes]
+.. link:./chapitre_principes/structures.adoc[Entités et relation entre entités]
+
+
 
