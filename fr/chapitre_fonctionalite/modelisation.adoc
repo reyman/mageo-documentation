@@ -53,7 +53,33 @@ image:/assets/image026.jpg[alt="Exemple de modèle conceptuel"]
 
 === Paramétrage des entités conceptuelles
 
+Les organisations et les classes d’agents créées sont ensuite renseignées afin de donner des informations qui seront utilisées lors de l’instanciation des entités physiques.
+
 ==== Paramétrage des agents
+
+Un agent possède des attributs et un programme d’action. Celui-ci est un script qui indique comment ses différents comportements seront exécutés lors d’un pas de temps. Un agent peut aussi possèder un système interne formé de différentes organisations. Pour gérer son système interne, une liste de ces organisations indique leur ordonnancement lors de l’initialisation et de l’exécution. 
+
+image::/assets/image027.png[align="center", caption="Dialogue de paramétrage d'un agent"]
+
+’interface de dialogue d’une classe agent permet de définir le contenu et la dynamique des agents. Elle contient :
+
+-          Un identifiant générique de classe, qui sert à définir les identifiants des instances en ajoutant à ce nom un numéro d’ordre ;
+
+-          Une liste d’attributs, qui représentent l’état de l’agent ;
+
+-          La définition du programme d’action, qui précise l’ordonnancement des comportements de l’agent lors d’un pas de temps, au moyen d’un langage dédié (voir 5.3.4.) ;
+
+-          L’ordonnancement des organisations internes, qui indique l’ordre dans lequel seront exécutés les comportements des agents internes lors d’un pas de temps (voir 5.3.2).
+
+Les attributs d’une classe agent doivent être définis dans le tableau des attributs de cette classe. Cette définition consiste à renseigner les 4 champs suivants :
+
+-          Le nom de cet attribut ;
+
+-          Le type de cet attribut, qui peut être un nombre entier, un nombre décimal, un nombre logique (nombre décimal entre 0 et 1), une chaîne de caractères, un vecteur, un agent, ou un énuméré. Dans MAGéo, une règle fondamentale est qu’un nom d’attribut ne peut être utilisé dans plusieurs classes agents que si le type associé est le même.
+
+-          L’expression d’initialisation, écrite en langage MAGéo, qui sera évaluée à l’initialisation du modèle pour fournir la valeur initiale de l’attribut. Cette expression doit donc être du type indiqué dans la colonne précédente. Par exemple, un attribut entier peut prendre une valeur initiale aléatoire entre 0 et 100 par RandInt(0, 100).
+
+-          L’expression de la dynamique de cet attribut, également écrite en langage MAGéo, est une expression donnant une nouvelle valeur à l’attribut, et qui sera évoquée lors d’un pas de temps si elle est indiquée dans le programme d’action à l’aide de la fonction Calc(). Par exemple, pour que l’attribut Age soit incrémenté à chaque itération, on peut écrire Age+1 dans le champ de dynamique de cet attribut, et l’invoquer en écrivant Calc(Age) dans le programme d’action.
 
 ==== Paramétrage des organisations
 
