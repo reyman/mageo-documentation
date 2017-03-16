@@ -6,7 +6,7 @@ La fenêtre de Modélisation contient déjà une entité nommé « Modèle » qu
 
 La fenêtre Simulation est composée de deux parties : un groupe supérieur nommé « Exécution » qui contient quelques boutons et champs qui servent aux commandes de base de toute simulation. Un groupe inférieur, qui est vierge et dans lequel se développera l’interface de simulation spécifique au modèle à définir.
 
-image:/assets/image001.png[alt="La fenêtre principale de la plateforme"]
+image:../assets/image001.png[alt="La fenêtre principale de la plateforme"]
 
 
 
